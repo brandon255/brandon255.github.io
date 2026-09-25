@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>BRENDA ARTS — Spencer Garland</title>
+<meta name="description" content="BRENDA ARTS is the studio of Portland artist Spencer Garland — sculpture, animation, and playable worlds. Current exhibition: Counter of Sheep." />
+<meta name="theme-color" content="#161616" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#161616; --panel:#1f1f1f; --ink:rgba(255,255,255,.92); --ink2:rgba(255,255,255,.55);
+    --gray:#8a8a8a; --white:#fff;
+    --rule:1px solid rgba(255,255,255,.22);
+    --pad:clamp(20px,4.5vw,64px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html,body{max-width:100%;overflow-x:hidden}
+  body{background:var(--bg);color:var(--ink);
+       font-family:"Roboto Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:300;line-height:1.6;
+       -webkit-font-smoothing:antialiased;overflow-wrap:break-word;
+       animation:pagein .25s ease-in}
+  @keyframes pagein{from{opacity:0}to{opacity:1}}
+  ::selection{background:#fff;color:#000}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+
+  .skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:8px 14px;z-index:200}
+  .skip:focus{left:8px;top:8px}
+
+  /* ---- nav: links only, right-aligned (the masthead carries the name) ---- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:baseline;justify-content:flex-end;gap:clamp(14px,2.4vw,34px);
+      padding:18px var(--pad);color:#fff}
+  nav a{color:#fff}
+  nav a.lnk{font-size:13px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;
+            text-decoration:none;opacity:.75;transition:opacity .18s ease;
+            mix-blend-mode:difference}
+  nav a.lnk:hover{opacity:1}
+  /* Grant Radar: the one yellow action — the radar app's highlighter yellow */
+  nav a.cta{mix-blend-mode:normal;background:#facc15;color:#161616;font-weight:500;
+            padding:7px 14px;opacity:1;align-self:center;border-radius:999px;
+            transition:transform .18s ease,background .18s ease}
+  nav a.cta:hover{transform:translateY(-1px);background:#ffd84d;opacity:1}
+  @media (max-width:760px){ nav{flex-wrap:wrap;row-gap:8px;justify-content:flex-start} nav a.lnk{font-size:12px} }
+
+  /* ---- hero ---- */
+  .hero{position:relative;height:max(100svh,560px);overflow:hidden;background:#161616}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+  .hero::after{content:"";position:absolute;inset:0;
+               background:linear-gradient(180deg,rgba(0,0,0,.42),transparent 34%,transparent 55%,rgba(0,0,0,.62))}
+  .hero .mast{position:absolute;top:calc(clamp(20px,3.5vh,40px) - 6px);left:calc(clamp(12px,2vw,28px) + 1.5vw);z-index:2;color:#fff}
+  .hero h1{font-weight:300;text-transform:uppercase;
+           font-size:clamp(33px,8.1vw,129px);line-height:1;letter-spacing:.03em}
+  .hero h1 span{display:block}
+  .hero h1 span:nth-child(1){position:relative;left:10px;top:-10px}
+  .hero h1 span:nth-child(2){position:relative;left:12px;top:-12px}
+  .hero .kick{margin-top:11px;color:#fff;position:relative;left:1.2vw;top:-12px;
+              font-size:13px;font-weight:300;letter-spacing:.26em;text-transform:uppercase}
+  @media (max-width:760px){ .hero .mast{top:132px} }
+  .hero .sub{position:absolute;right:var(--pad);left:calc(var(--pad) + 8vw);top:clamp(380px,52vh,640px);z-index:2;color:#fff;text-align:right;
+             font-size:13px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;opacity:.85;line-height:2.1}
+  /* Brandon's layout pass (editor exports, baked Sep 23) - responsive:
+       offsets converted to vw/vh so the arrangement scales with the
+       window instead of freezing at the editing width. */
+  @media (min-width:761px){
+    /* Brandon pass #2 intent: one tight right-aligned cluster, no
+       spread, no big gap. Natural flex packing — cannot overlap at
+       any width. Literal per-link drag offsets would have converged
+       the tabs into each other on screens narrower than the editing
+       window, so the intent is expressed structurally instead. */
+    nav a.lnk:nth-of-type(8){position:relative;top:44px;right:1.2vw;margin-right:1.2vw}
+    nav{row-gap:10px}
+  }
+
+  main{display:block}
+  section{padding:clamp(56px,8vw,110px) var(--pad);border-top:var(--rule)}
+  section:first-of-type{border-top:none}
+  .kicker{font-size:13px;font-weight:300;letter-spacing:.26em;text-transform:uppercase;color:var(--gray);margin-bottom:26px}
+  .kicker b{color:var(--ink);font-weight:500}
+
+  /* ---- statement ---- */
+  .statement{max-width:1050px}
+  p.statement{font-weight:300;
+               font-size:clamp(23px,3.2vw,42px);line-height:1.38;letter-spacing:.01em;color:var(--ink)}
+  .statement p em{font-style:normal;font-weight:500}
+
+  /* ---- exhibition card: type left, image bleeding right, white spine ---- */
+  .exh{display:grid;grid-template-columns:6fr 5fr;gap:clamp(24px,3.5vw,56px);
+       border-left:2px solid #fff;padding-left:clamp(18px,2.6vw,40px);align-items:end}
+  .exh .who{font-size:15px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+  .exh .ttl{font-weight:300;text-transform:uppercase;font-size:clamp(32px,4.6vw,66px);
+            line-height:1.08;letter-spacing:.03em;margin:12px 0 20px}
+  .exh .meta{font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);line-height:2.1}
+  .exh .tag{display:inline-block;background:#fff;color:#000;font-size:12px;font-weight:500;
+            letter-spacing:.2em;text-transform:uppercase;padding:7px 16px;margin-top:24px}
+  .exh figure{margin-right:calc(-1 * var(--pad))}
+  .exh img{width:100%;height:100%;max-height:520px;object-fit:cover}
+  @media (max-width:840px){ .exh{grid-template-columns:1fr} .exh figure{margin-right:calc(-1 * var(--pad))} }
+
+  /* ---- selected works: asymmetric editorial grid ---- */
+  .works{display:grid;grid-template-columns:7fr 5fr;gap:clamp(18px,2.6vw,36px);align-items:start}
+  .works .stack{display:grid;gap:clamp(18px,2.6vw,36px)}
+  @media (max-width:840px){ .works{grid-template-columns:1fr} }
+  .art{position:relative;overflow:hidden;background:var(--panel);cursor:pointer}
+  .art img{width:100%;height:100%;object-fit:cover;transition:opacity .25s ease,transform .35s ease}
+  .art .cap{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+            padding:18px 20px;opacity:0;transition:opacity .25s ease;color:var(--ink)}
+  .art .cap b{font-weight:500;font-size:16px;letter-spacing:.08em;text-transform:uppercase}
+  .art .cap span{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2);margin-top:5px}
+  .art:hover img{opacity:.18;transform:scale(1.015)}
+  .art:hover .cap{opacity:1}
+  .art:focus-visible{outline:1px solid #fff;outline-offset:3px}
+  .more{display:inline-block;margin-top:34px;font-size:14px;font-weight:500;letter-spacing:.2em;
+        text-transform:uppercase;text-decoration:none;border-bottom:1px solid #fff;padding-bottom:4px;
+        transition:opacity .18s ease;opacity:.9}
+  .more:hover{opacity:1}
+
+  /* ---- scroll reveal ---- */
+  [data-img-reveal]{opacity:0;transform:scale(1.02);transition:opacity .6s ease,transform .7s ease}
+  [data-img-reveal].on{opacity:1;transform:scale(1)}
+
+  /* ---- film frames strip ---- */
+  .film{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,26px)}
+  .film .art{aspect-ratio:8/5}
+  @media (max-width:840px){ .film{grid-template-columns:repeat(2,1fr)} }
+
+  /* ---- process ---- */
+  .proc{display:grid;grid-template-columns:5fr 7fr;gap:clamp(18px,2.6vw,36px);align-items:start}
+  @media (max-width:840px){ .proc{grid-template-columns:1fr} }
+  .proc figure{background:var(--panel)}
+  .proc video,.proc img{width:100%;height:auto}
+  .proc figcaption{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);
+                   padding:12px 2px 0;line-height:1.8}
+
+  /* ---- about ---- */
+  .about{display:grid;grid-template-columns:7fr 5fr;gap:clamp(24px,3.5vw,56px)}
+  @media (max-width:840px){ .about{grid-template-columns:1fr} }
+  .about .bio{font-weight:300;
+              font-size:clamp(17px,1.7vw,22px);line-height:1.75;color:var(--ink)}
+  .facts{list-style:none;border-top:var(--rule)}
+  .facts li{display:flex;justify-content:space-between;gap:18px;padding:13px 0;border-bottom:var(--rule);
+            font-size:14px;letter-spacing:.08em}
+  .facts li span:first-child{color:var(--ink2);text-transform:uppercase;letter-spacing:.18em;font-size:12.5px}
+
+  /* ---- footer ---- */
+  footer{background:#161616;color:#fff;padding:clamp(48px,7vw,90px) var(--pad) 34px;border-top:var(--rule)}
+  footer .big{font-weight:300;text-transform:uppercase;
+              font-size:clamp(42px,8.5vw,132px);line-height:1;letter-spacing:.04em}
+  footer .row{display:flex;flex-wrap:wrap;gap:14px 34px;margin-top:38px;padding-top:22px;
+              border-top:1px solid rgba(255,255,255,.22);font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+  footer .row a{text-decoration:none;opacity:.7;transition:opacity .18s}
+  footer .row a:hover{opacity:1}
+  footer .row .r{margin-left:auto;opacity:.5}
+
+  /* ---- trailer (YouTube, muted autoplay when in view) ---- */
+  .yt{position:relative;aspect-ratio:16/9;background:var(--panel);overflow:hidden}
+  .yt img{width:100%;height:100%;object-fit:cover;opacity:.85}
+  .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .ytcap{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);padding-top:14px;line-height:1.9}
+  .ytcap a{color:var(--ink)}
+
+  /* ---- soundtrack chip (official Spotify embed) ---- */
+  .soundtrack{position:fixed;right:18px;bottom:18px;z-index:150;text-align:right}
+  .soundtrack .pill{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#000;border:0;cursor:pointer;
+    font-family:"Roboto Mono",ui-monospace,monospace;font-weight:500;font-size:12.5px;letter-spacing:.18em;
+    text-transform:uppercase;padding:12px 18px;box-shadow:0 6px 24px rgba(0,0,0,.55);transition:transform .18s ease}
+  .soundtrack .pill:hover{transform:translateY(-2px)}
+  .soundtrack .pill .eq{display:inline-flex;gap:2px;align-items:flex-end;height:10px}
+  .soundtrack .pill .eq i{width:2px;height:4px;background:#000;animation:eq 1s ease-in-out infinite}
+  .soundtrack .pill .eq i:nth-child(2){animation-delay:.2s}
+  .soundtrack .pill .eq i:nth-child(3){animation-delay:.4s}
+  @keyframes eq{0%,100%{height:3px}50%{height:10px}}
+  .soundtrack .player{display:none;margin-top:10px;width:min(360px,calc(100vw - 36px))}
+  .soundtrack.open .player{display:block}
+  .soundtrack .player iframe{display:block;width:100%;height:152px;border:0;border-radius:12px}
+
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav aria-label="Main">
+  <a class="lnk" href="assets.html">Work</a>
+  <a class="lnk" href="#exhibition">Exhibition</a>
+  <a class="lnk" href="#trailer">Trailer</a>
+  <a class="lnk" href="#process">Process</a>
+  <a class="lnk" href="#about">About</a>
+  <a class="lnk" href="models.html">3D</a>
+  <a class="lnk" href="studio-os.html">Studio OS</a>
+  <a class="lnk cta" href="/radar/">Grant Radar</a>
+</nav>
+
+<header class="hero">
+  <img src="assets/fifth-space-system-install.jpg" alt="Spencer Garland and a collaborator standing behind the Fifth Space System table at the Counter of Sheep exhibition" fetchpriority="high" />
+  <div class="mast">
+    <h1><span>BRENDA</span><span>ARTS</span></h1>
+    <div class="kick">Spencer Garland - Portland, Oregon</div>
+  </div>
+  <div class="sub">Sculpture · Animation<br/>Playable Worlds</div>
+</header>
+
+<main id="main">
+
+  <section aria-label="Statement">
+    <p class="statement" style="max-width:1050px">BRENDA ARTS is the studio of Spencer Garland —
+    sculpture, animation, and <em>playable worlds</em>. The work turns a gallery into a game board:
+    an island you can take apart, rebuild, and play on.</p>
+  </section>
+
+  <section id="exhibition" aria-label="Current exhibition">
+    <div class="kicker"><b>Current exhibition</b></div>
+    <div class="exh">
+      <div>
+        <div class="who">Spencer Garland</div>
+        <h2 class="ttl">Counter of Sheep</h2>
+        <div class="meta">
+          August 21–22, 2026<br/>
+          Portland, Oregon<br/>
+          The Fifth Space System, assembled
+        </div>
+        <span class="tag">Interactive installation</span>
+      </div>
+      <figure data-img-reveal>
+        <img src="assets/fifth-space-table-overhead.jpg" alt="The Fifth Space System table seen from above — modular island pieces, houses, and a printed sheep figure" loading="lazy" />
+      </figure>
+    </div>
+  </section>
+
+  <section id="trailer" aria-label="Trailer">
+    <div class="kicker"><b>Trailer</b> — Counter of Sheep</div>
+    <figure class="yt" id="yt" data-yt="ADmbG-UqrEk">
+      <img src="https://i.ytimg.com/vi/ADmbG-UqrEk/maxresdefault.jpg" alt="Trailer still — the Counter of Sheep world" loading="lazy" />
+    </figure>
+    <p class="ytcap">&ldquo;Sheep&rdquo; — the trailer, by Spencer Garland · playing muted —
+      tap the <b>Soundtrack</b> chip, bottom right, for the music ·
+      <a href="https://www.youtube.com/watch?v=ADmbG-UqrEk" target="_blank" rel="noopener">watch with sound on YouTube</a></p>
+  </section>
+
+  <section aria-label="Selected works">
+    <div class="kicker"><b>Selected works</b> — the Fifth Space System</div>
+    <div class="works">
+      <figure class="art" data-img-reveal tabindex="0" role="button" aria-label="View Counter of Sheep figure larger" data-full="assets/counter-of-sheep-figure.jpg" data-cap="Counter of Sheep — figure|FDM print, studio">
+        <img src="assets/counter-of-sheep-figure.jpg" alt="Large black printed sheep figure on a stepped base, on a studio table" loading="lazy" />
+        <figcaption class="cap"><b>Counter of Sheep — figure</b><span>FDM print · studio</span></figcaption>
+      </figure>
+      <div class="stack">
+        <figure class="art" data-img-reveal tabindex="0" role="button" aria-label="View sheep print close-up larger" data-full="assets/sheep-print-closeup.jpg" data-cap="Sheep — fresh off the bed|Contour topography in hand">
+          <img src="assets/sheep-print-closeup.jpg" alt="Close-up of a freshly printed sheep figure held over the build plate" loading="lazy" />
+          <figcaption class="cap"><b>Sheep — fresh off the bed</b><span>Contour topography in hand</span></figcaption>
+        </figure>
+        <figure class="art" data-img-reveal tabindex="0" role="button" aria-label="View snake and tiles larger" data-full="assets/studio-snake-and-tiles.jpg" data-cap="Snake and puzzle tiles|Work in progress, studio table">
+          <img src="assets/studio-snake-and-tiles.jpg" alt="A long printed snake and two puzzle-piece tiles on a studio workbench" loading="lazy" />
+          <figcaption class="cap"><b>Snake &amp; puzzle tiles</b><span>Work in progress · studio table</span></figcaption>
+        </figure>
+      </div>
+      <figure class="art" data-img-reveal tabindex="0" role="button" aria-label="View slicer layout larger" data-full="assets/slicer-print-layout.jpg" data-cap="Nested for the plate|Slicer layout, Fifth Space System parts">
+        <img src="assets/slicer-print-layout.jpg" alt="Slicer software laying out the Fifth Space System parts on a virtual print bed" loading="lazy" />
+        <figcaption class="cap"><b>Nested for the plate</b><span>Slicer layout · Fifth Space System parts</span></figcaption>
+      </figure>
+      <div class="stack">
+        <figure class="art" data-img-reveal tabindex="0" role="button" aria-label="View the island from above larger" data-full="assets/fifth-space-table-overhead.jpg" data-cap="The island, from above|Modular tiles, houses, and the sheep">
+          <img src="assets/fifth-space-table-overhead.jpg" alt="Overhead view of the Fifth Space System table" loading="lazy" />
+          <figcaption class="cap"><b>The island, from above</b><span>Modular tiles · houses · the sheep</span></figcaption>
+        </figure>
+        <figure class="art" data-img-reveal tabindex="0" role="button" aria-label="View the installation larger" data-full="assets/fifth-space-system-install.jpg" data-cap="Counter of Sheep — installed|The Fifth Space System, with the artists">
+          <img src="assets/fifth-space-system-install.jpg" alt="Spencer Garland and a collaborator behind the assembled Fifth Space System table" loading="lazy" />
+          <figcaption class="cap"><b>Counter of Sheep — installed</b><span>The Fifth Space System, with the artists</span></figcaption>
+        </figure>
+      </div>
+    </div>
+    <a class="more" href="assets.html">All work →</a>
+  </section>
+
+  <section class="filmsec" aria-label="From the print bed">
+    <div class="kicker"><b>Frames</b> — from the print timelapse</div>
+    <div class="film">
+      <figure class="art" data-img-reveal tabindex="0" role="button" aria-label="View print frame one larger" data-full="assets/timelapse-still-01.jpg" data-cap="Layer 001|The print begins — first walls of the island">
+        <img src="assets/timelapse-still-01.jpg" alt="Early frame of the print timelapse — the first walls of an island piece on the bed" loading="lazy" />
+        <figcaption class="cap"><b>Layer 001</b><span>The print begins</span></figcaption>
+      </figure>
+      <figure class="art" data-img-reveal tabindex="0" role="button" aria-label="View print frame two larger" data-full="assets/timelapse-still-03.jpg" data-cap="Walls up|The piece gains height, layer by layer">
+        <img src="assets/timelapse-still-03.jpg" alt="Mid-print frame — walls of the piece rising on the print bed" loading="lazy" />
+        <figcaption class="cap"><b>Walls up</b><span>Layer by layer</span></figcaption>
+      </figure>
+      <figure class="art" data-img-reveal tabindex="0" role="button" aria-label="View print frame three larger" data-full="assets/timelapse-still-05.jpg" data-cap="Terrain forms|Layer lines read as topography">
+        <img src="assets/timelapse-still-05.jpg" alt="Later print frame — the piece's contours emerging as terrain" loading="lazy" />
+        <figcaption class="cap"><b>Terrain forms</b><span>Contour as topography</span></figcaption>
+      </figure>
+      <figure class="art" data-img-reveal tabindex="0" role="button" aria-label="View print frame four larger" data-full="assets/timelapse-still-07.jpg" data-cap="Nearly there|The piece approaches full height">
+        <img src="assets/timelapse-still-07.jpg" alt="Final print frame — the piece at nearly full height on the bed" loading="lazy" />
+        <figcaption class="cap"><b>Nearly there</b><span>Full height</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="process" aria-label="Process">
+    <div class="kicker"><b>Process</b> — drawing to island</div>
+    <div class="proc">
+      <figure data-img-reveal>
+        <img src="assets/slicer-print-layout.jpg" alt="Slicer software laying out the Fifth Space System parts on a virtual print bed" loading="lazy" />
+        <figcaption>Every piece is nested for the plate before it becomes machine time.</figcaption>
+      </figure>
+      <figure data-img-reveal>
+        <video src="assets/print-timelapse.mp4" poster="assets/sheep-print-closeup.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        <figcaption>Print timelapse — the island emerges layer by layer. The layer lines read as terrain.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="about" aria-label="About">
+    <div class="kicker"><b>The studio</b></div>
+    <div class="about">
+      <p class="bio">Spencer Garland is an artist and educator in Portland, Oregon. Through BRENDA ARTS
+      he builds worlds that start as pencil geometry and end as physical, playable systems — printed,
+      assembled, and handed to an audience. The same worlds carry into animation through motion
+      capture, most recently in the OptiTrack volume at the University of Nebraska–Lincoln.</p>
+      <ul class="facts">
+        <li><span>Based</span><span>Portland, Oregon</span></li>
+        <li><span>Practice</span><span>Sculpture · animation · education</span></li>
+        <li><span>Current</span><span>Counter of Sheep — Aug 21–22, 2026</span></li>
+        <li><span>Residency</span><span>Motion capture, U. of Nebraska–Lincoln</span></li>
+        <li><span>Screenings</span><span>BlackStar Film Festival</span></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="big">BRENDA ARTS</div>
+  <div class="row">
+    <a href="assets.html">Work</a>
+    <a href="models.html">3D models</a>
+    <a href="studio-os.html">Studio OS</a>
+    <a href="/radar/">Grant Radar</a>
+    <span class="r">Portland, Oregon · © 2026</span>
+  </div>
+</footer>
+
+<div class="soundtrack" id="soundtrack">
+  <button class="pill" id="soundtrack-pill" type="button" aria-expanded="false" aria-controls="soundtrack-player">
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+    Soundtrack — Ziggy Starfish
+  </button>
+  <div class="player" id="soundtrack-player"></div>
+</div>
+
+
+<script>
+/* scroll-driven reveals */
+const io = new IntersectionObserver((es) => {
+  for (const e of es) if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+}, { threshold: 0.12 });
+document.querySelectorAll('[data-img-reveal]').forEach((el) => io.observe(el));
+
+/* tap a work to see it large */
+const lb = document.createElement('div');
+lb.style.cssText = 'position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;cursor:zoom-out;padding:5vh 4vw';
+const lbImg = document.createElement('img');
+lbImg.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain';
+lb.appendChild(lbImg);
+document.body.appendChild(lb);
+function closeLb(){ lb.style.display = 'none'; document.body.style.overflow = ''; }
+lb.addEventListener('click', closeLb);
+addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
+document.querySelectorAll('.art').forEach((fig) => {
+  const open = () => {
+    lbImg.src = fig.dataset.full;
+    lbImg.alt = fig.querySelector('img').alt;
+    lb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  };
+  fig.addEventListener('click', open);
+  fig.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+});
+
+/* trailer: the trailer runs muted in place — browsers allow muted autoplay,
+   so it plays itself when scrolled into view. The voiceover stays available
+   through the YouTube controls or the link below; music lives in the
+   Soundtrack chip. */
+const ytFig = document.getElementById('yt');
+if (ytFig) {
+  const ytIo = new IntersectionObserver((es) => {
+    for (const e of es) if (e.isIntersecting) {
+      const id = ytFig.dataset.yt;
+      ytFig.insertAdjacentHTML('beforeend',
+        '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+        '?autoplay=1&mute=1&loop=1&playlist=' + id + '&rel=0&modestbranding=1" ' +
+        'title="Counter of Sheep — trailer (muted loop)" style="position:absolute;inset:0" ' +
+        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>');
+      ytIo.unobserve(ytFig);
+    }
+  }, { threshold: 0.3 });
+  ytIo.observe(ytFig);
+}
+
+/* soundtrack: expand the pill into the official Spotify embed.
+   Visitors press play inside the embed — browsers do not let a page
+   start audio on its own before any interaction. */
+const st = document.getElementById('soundtrack');
+const stBtn = document.getElementById('soundtrack-pill');
+const stPlayer = document.getElementById('soundtrack-player');
+stBtn.addEventListener('click', () => {
+  const open = st.classList.toggle('open');
+  stBtn.setAttribute('aria-expanded', String(open));
+  if (open && !stPlayer.firstChild) {
+    stPlayer.innerHTML = '<iframe title="Spotify — Ziggy Starfish (Anxiety Raps) by Open Mike Eagle" ' +
+      'src="https://open.spotify.com/embed/track/51rJyLJEFY5jS4b4z50ISN?utm_source=generator&theme=0" ' +
+      'loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>';
+  }
+});
+
+</script>
+</body>
+</html>

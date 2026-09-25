@@ -1,0 +1,338 @@
+[
+  {
+    "slug": "sitemap_repaired",
+    "name": "The Island",
+    "blurb": "The full site map — the canonical geography of Counter of Sheep.",
+    "file": "sitemap_repaired.stl",
+    "sourceTris": 657378,
+    "tris": 25831,
+    "sourceBytes": 32868984,
+    "bytes": 1291634,
+    "size": {
+      "x": 11.1,
+      "y": 10.2,
+      "z": 7.2
+    },
+    "components": 41,
+    "focus": {
+      "min": [
+        -0.038,
+        -0.103,
+        -6.297
+      ],
+      "max": [
+        11.08,
+        10.067,
+        0.847
+      ]
+    }
+  },
+  {
+    "slug": "puzzlepieceshape",
+    "name": "Puzzle Tile",
+    "blurb": "The modular terrain unit. Every piece of the island snaps to this shape.",
+    "file": "puzzlepieceshape.stl",
+    "sourceTris": 3840,
+    "tris": 3496,
+    "sourceBytes": 192084,
+    "bytes": 174884,
+    "size": {
+      "x": 10.2,
+      "y": 10.1,
+      "z": 0.3
+    },
+    "components": 1,
+    "focus": {
+      "min": [
+        -2.166,
+        0.003,
+        -0.201
+      ],
+      "max": [
+        8.027,
+        10.067,
+        0.078
+      ]
+    }
+  },
+  {
+    "slug": "hearthaus",
+    "name": "Heart Haus",
+    "blurb": "Student-designed home.",
+    "file": "hearthaus.stl",
+    "sourceTris": 295,
+    "tris": 281,
+    "sourceBytes": 14834,
+    "bytes": 14134,
+    "size": {
+      "x": 6.7,
+      "y": 7.2,
+      "z": 2.3
+    },
+    "components": 3,
+    "focus": {
+      "min": [
+        -4.159,
+        -3.229,
+        -0.697
+      ],
+      "max": [
+        2.575,
+        3.926,
+        1.634
+      ]
+    }
+  },
+  {
+    "slug": "bballmanor",
+    "name": "Basketball Manor",
+    "blurb": "Student-designed home.",
+    "file": "bballmanor.stl",
+    "sourceTris": 115476,
+    "tris": 7178,
+    "sourceBytes": 5773884,
+    "bytes": 358984,
+    "size": {
+      "x": 25.3,
+      "y": 12,
+      "z": 11.2
+    },
+    "components": 6,
+    "focus": {
+      "min": [
+        -8.866,
+        -5.343,
+        -3.032
+      ],
+      "max": [
+        9.911,
+        6.705,
+        2.975
+      ]
+    }
+  },
+  {
+    "slug": "shroomhouse",
+    "name": "Shroom House",
+    "blurb": "Student-designed home.",
+    "file": "shroomhouse.stl",
+    "sourceTris": 118144,
+    "tris": 34058,
+    "sourceBytes": 5907284,
+    "bytes": 1702984,
+    "size": {
+      "x": 12.7,
+      "y": 13.2,
+      "z": 6.1
+    },
+    "components": 2,
+    "focus": {
+      "min": [
+        -3.854,
+        -7.625,
+        -1.584
+      ],
+      "max": [
+        8.782,
+        5.533,
+        4.494
+      ]
+    }
+  },
+  {
+    "slug": "brocohouse7",
+    "name": "Broco House",
+    "blurb": "Student-designed home.",
+    "file": "brocohouse7.stl",
+    "sourceTris": 3392384,
+    "tris": 44041,
+    "sourceBytes": 169619284,
+    "bytes": 2202134,
+    "size": {
+      "x": 14.5,
+      "y": 6.6,
+      "z": 6.2
+    },
+    "components": 2,
+    "focus": {
+      "min": [
+        -7.658,
+        -4.413,
+        -2.876
+      ],
+      "max": [
+        6.811,
+        2.21,
+        3.302
+      ]
+    }
+  },
+  {
+    "slug": "cakehaus",
+    "name": "Cake Haus",
+    "blurb": "Student-designed home.",
+    "file": "cakehaus.stl",
+    "sourceTris": 1009677,
+    "tris": 27931,
+    "sourceBytes": 50483934,
+    "bytes": 1396634,
+    "size": {
+      "x": 31.1,
+      "y": 6.9,
+      "z": 3.9
+    },
+    "components": 4,
+    "focus": {
+      "min": [
+        -2.164,
+        -2.373,
+        -0.55
+      ],
+      "max": [
+        2.248,
+        2.04,
+        1.538
+      ]
+    }
+  },
+  {
+    "slug": "clocktowerpyramids",
+    "name": "Clock Tower & Pyramids",
+    "blurb": "Architectural landmarks.",
+    "file": "clocktowerpyramids.stl",
+    "sourceTris": 231952,
+    "tris": 15578,
+    "sourceBytes": 11597684,
+    "bytes": 778984,
+    "size": {
+      "x": 14.7,
+      "y": 7.4,
+      "z": 10.1
+    },
+    "components": 4,
+    "focus": {
+      "min": [
+        -16.224,
+        -6.518,
+        -6.253
+      ],
+      "max": [
+        -1.554,
+        0.832,
+        3.803
+      ]
+    }
+  },
+  {
+    "slug": "footballhanger",
+    "name": "Football Hangar",
+    "blurb": "Architectural landmark.",
+    "file": "footballhanger.stl",
+    "sourceTris": 162844,
+    "tris": 27613,
+    "sourceBytes": 8142284,
+    "bytes": 1380734,
+    "size": {
+      "x": 16.9,
+      "y": 28.8,
+      "z": 13.2
+    },
+    "components": 6,
+    "focus": {
+      "min": [
+        -9.089,
+        -12.806,
+        -6.667
+      ],
+      "max": [
+        5.16,
+        15.934,
+        6.51
+      ]
+    }
+  },
+  {
+    "slug": "sword",
+    "name": "Sword",
+    "blurb": "Set piece.",
+    "file": "sword.stl",
+    "sourceTris": 299520,
+    "tris": 40445,
+    "sourceBytes": 14976084,
+    "bytes": 2022334,
+    "size": {
+      "x": 3.2,
+      "y": 0.8,
+      "z": 15.9
+    },
+    "components": 1,
+    "focus": {
+      "min": [
+        -1.751,
+        -0.646,
+        -8.271
+      ],
+      "max": [
+        1.42,
+        0.164,
+        7.588
+      ]
+    }
+  },
+  {
+    "slug": "blockshapes",
+    "name": "Block Shapes",
+    "blurb": "Terrain and massing blocks.",
+    "file": "blockshapes.stl",
+    "sourceTris": 45164,
+    "tris": 13874,
+    "sourceBytes": 2258284,
+    "bytes": 693784,
+    "size": {
+      "x": 21.4,
+      "y": 5,
+      "z": 3.5
+    },
+    "components": 6,
+    "focus": {
+      "min": [
+        -1.272,
+        -2.333,
+        -1
+      ],
+      "max": [
+        20.178,
+        2.662,
+        2.483
+      ]
+    }
+  },
+  {
+    "slug": "BLOCKSHAPESORGANIC",
+    "name": "Block Shapes — Organic",
+    "blurb": "Organic terrain forms.",
+    "file": "BLOCKSHAPESORGANIC.stl",
+    "sourceTris": 170236,
+    "tris": 30810,
+    "sourceBytes": 8511884,
+    "bytes": 1540584,
+    "size": {
+      "x": 25.7,
+      "y": 5,
+      "z": 3.5
+    },
+    "components": 7,
+    "focus": {
+      "min": [
+        -1.267,
+        -2.333,
+        -1
+      ],
+      "max": [
+        20.177,
+        2.662,
+        2.483
+      ]
+    }
+  }
+]

@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Studio OS — BRENDA ARTS</title>
+<meta name="description" content="A studio operating system for BRENDA ARTS. Prepared for Spencer Garland." />
+<meta name="theme-color" content="#faf9f6" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#faf9f6; --ink2:#f3ecdd; --panel:#fffdf6; --panel2:#f7f0e1;
+    --line:#e9e7e0; --line2:#d6d3c9;
+    --paper:#232326; --paper2:#55565c; --paper3:#9b9ca3;
+    --gold:#ca8a04; --teal:#0f9d6d; --rust:#dc4c3e;
+    --grape:#7c5cbf; --pink:#db2777; --sky:#0e7490; --leaf:#15803d; --amber:#d97706;
+    --yellow:#facc15; --yellow-soft:#fef3c7; --yellow-deep:#a16207;
+    --pad:clamp(20px, 5vw, 64px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--ink);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html,body{max-width:100%;overflow-x:hidden}
+  body{
+    font-family:"Space Grotesk",Arial,'Helvetica Neue',Helvetica,sans-serif;
+    background:
+      radial-gradient(ellipse 46% 34% at 12% 0%, rgba(250,204,21,.10), transparent 65%),
+      radial-gradient(ellipse 40% 30% at 90% 8%, rgba(124,92,191,.05), transparent 65%),
+      radial-gradient(ellipse 36% 28% at 80% 85%, rgba(15,157,109,.05), transparent 65%),
+      var(--ink);
+    color:var(--paper);
+    -webkit-font-smoothing:antialiased;line-height:1.55;
+    overflow-wrap:break-word;
+  }
+  ::selection{background:var(--yellow);color:#232326}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 var(--pad)}
+
+  /* ---- top bar ---- */
+  .bar{position:sticky;top:0;z-index:50;background:rgba(250,249,246,.92);
+       backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
+  .bar .inner{max-width:1080px;margin:0 auto;padding:12px var(--pad);
+              display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .bar .mark{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--paper2);font-weight:600}
+  @media (max-width:560px){ .bar .mark{display:none} .bar .inner{gap:8px;justify-content:flex-end} }
+  .bar .sp{flex:1}
+  .btn{display:inline-block;font-size:15px;font-weight:700;letter-spacing:.02em;
+       padding:9px 15px;border:1.5px solid var(--line2);color:var(--paper);
+       text-decoration:none;background:var(--panel);cursor:pointer;border-radius:999px}
+  .btn:hover{border-color:var(--yellow);background:var(--yellow-soft);color:var(--ink)}
+  .btn.solid{background:var(--yellow-soft);border-color:var(--yellow);color:var(--ink)}
+  .btn.solid:hover{background:var(--yellow);border-color:var(--yellow);color:var(--ink)}
+  .btn.holo{background:var(--yellow);border-color:var(--yellow);color:var(--ink)}
+  .btn.holo:hover{background:#fde047;color:var(--ink)}
+  .btn[disabled]{opacity:.5;cursor:default}
+
+  /* ---- type ---- */
+  .eyebrow{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--paper3);font-weight:600;margin-bottom:14px}
+  h1{font-family:"Space Grotesk","Inter",Arial,sans-serif;font-size:clamp(29px,6.2vw,60px);font-weight:700;letter-spacing:-.028em;line-height:1.06}
+  @media (max-width:640px){ h1 br{display:none} }
+  h2{font-family:"Space Grotesk","Inter",Arial,sans-serif;font-size:clamp(25px,3.6vw,38px);font-weight:700;letter-spacing:-.024em;line-height:1.14;margin-bottom:12px}
+  h3{font-size:17px;font-weight:700;letter-spacing:-.005em;margin-bottom:6px}
+  p{color:var(--paper2);font-size:clamp(16px,1.55vw,18px)}
+  .lead{font-size:clamp(17px,1.9vw,21px);color:var(--paper2);line-height:1.55;max-width:64ch}
+  .sm{font-size:15px;color:var(--paper3);line-height:1.5}
+  strong{color:var(--paper);font-weight:700}
+  em{color:var(--teal);font-style:normal;font-weight:700}
+
+  section{padding:clamp(44px,7vw,86px) 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:none}
+  .rule{height:1px;background:var(--line);margin:26px 0}
+
+  /* ---- hero ---- */
+  .hero{padding-top:clamp(46px,8vw,96px)}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px;border-top:1px solid var(--line);padding-top:22px}
+  .stat .v{font-family:"Space Grotesk","Inter",Arial,sans-serif;font-size:clamp(30px,5vw,46px);font-weight:700;letter-spacing:-.035em;line-height:1}
+  .stat .v.hot{color:var(--yellow-deep)}
+  .stat .l{font-size:14px;color:var(--paper3);margin-top:8px;line-height:1.35}
+
+  /* ---- grids ---- */
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px)}
+  .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px)}
+  .g25{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(20px,3vw,40px)}
+  @media (max-width:840px){ .g2,.g3,.g25{grid-template-columns:1fr} .stats{grid-template-columns:1fr;gap:16px} }
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+         box-shadow:0 1px 2px rgba(35,35,38,.05),0 6px 16px rgba(35,35,38,.05);padding:20px}
+  .panel.alt{background:var(--panel2)}
+
+  ul{list-style:none}
+  li{font-size:17px;color:var(--paper2);padding-left:20px;position:relative;margin-bottom:11px;line-height:1.5}
+  li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--yellow);border-radius:2px}
+
+  .pipe{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .pipe span{font-size:14px;color:var(--paper2);border:1.5px solid var(--line2);border-radius:999px;padding:4px 10px;background:var(--panel)}
+
+  .flag{border-left:3px solid var(--rust);background:#fdeeeb;border-radius:0 14px 14px 0;padding:10px 4px 10px 16px;margin-top:16px}
+  .flag .lbl{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--rust);font-weight:700;margin-bottom:4px}
+
+  /* ---- producer screen (a little monitor on the light page) ---- */
+  .screen{background:#262032;border:1px solid var(--line);border-radius:14px;
+          box-shadow:0 4px 18px rgba(35,35,38,.14);padding:22px}
+  .screen .hd{font-family:"Space Grotesk","Inter",Arial,sans-serif;font-size:22px;font-weight:700;letter-spacing:-.02em;color:#f7f1e4}
+  .screen .dt{font-size:13px;color:#9c93ad;letter-spacing:.12em;text-transform:uppercase;margin:4px 0 18px}
+  .screen .grp{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);font-weight:700;margin:16px 0 8px}
+  .screen .row{display:flex;align-items:baseline;gap:9px;font-size:16px;color:#cfc6dd;margin-bottom:6px}
+  .dot{width:8px;height:8px;border-radius:50%;flex:none;position:relative;top:-1px}
+  .d-r{background:var(--rust)} .d-y{background:var(--amber)} .d-g{background:var(--leaf)}
+  .screen .row .t{color:#9c93ad;margin-left:auto;font-size:14px;white-space:nowrap;padding-left:10px}
+
+  /* ---- lane cards ---- */
+  .lanes{display:grid;gap:14px;margin-top:26px}
+  .lane{border:1px solid var(--line);background:var(--panel);border-radius:14px;
+        box-shadow:5px 6px 0 rgba(38,32,50,.07)}
+  .lane.hot{border-color:var(--amber)}
+  .lane.picked{border-color:var(--leaf);background:#e6f6ec}
+  .lane .top{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;cursor:pointer}
+  .lane .id{font-size:13px;letter-spacing:.16em;color:var(--yellow-deep);font-weight:700;flex:none;width:34px;padding-top:3px}
+  .lane .nm{font-size:19px;font-weight:700;letter-spacing:-.015em}
+  .lane .tg{font-size:14.5px;color:var(--paper3);margin-top:3px}
+  .lane .chev{margin-left:auto;color:var(--paper3);font-size:15px;flex:none;padding-top:3px;transition:transform .15s}
+  .lane.open .chev{transform:rotate(180deg)}
+  .lane .body{display:none;padding:0 20px 20px;border-top:1px solid var(--line);margin-top:0}
+  .lane.open .body{display:block;padding-top:18px}
+  .now{border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
+  .now .k{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper3);font-weight:700}
+  .now .v{font-size:18px;font-weight:700;letter-spacing:-.015em;color:var(--teal);margin-top:5px}
+
+  .pick{display:flex;align-items:center;gap:10px;margin-top:18px;padding:12px 14px;border-radius:12px;
+        border:1.5px solid var(--yellow);background:var(--yellow-soft);cursor:pointer;user-select:none}
+  .pick input{width:17px;height:17px;accent-color:var(--yellow-deep);flex:none;cursor:pointer}
+  .pick span{font-size:15.5px;color:var(--paper2);font-weight:700}
+
+  /* ---- forms ---- */
+  label.q{display:block;margin-top:24px}
+  label.q .qt{font-size:17px;color:var(--paper);font-weight:700;line-height:1.45;display:block;margin-bottom:9px}
+  label.q .qt i{color:var(--gold);font-style:normal;margin-right:8px}
+  textarea,input[type=text]{
+    width:100%;background:var(--panel);border:1.5px solid var(--line2);color:var(--paper);
+    font-family:inherit;font-size:17px;line-height:1.5;padding:11px 13px;border-radius:12px;resize:vertical}
+  textarea:focus,input[type=text]:focus{outline:none;border-color:var(--yellow)}
+  textarea{min-height:74px}
+  .hint{font-size:14.5px;color:var(--paper3);margin-top:6px}
+
+  .save{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:32px;
+        border-top:1px solid var(--line);padding-top:24px}
+  .status{font-size:15.5px;color:var(--paper3)}
+  .status.ok{color:var(--teal)}
+  .status.err{color:var(--rust)}
+
+  /* ---- misc ---- */
+  .num{color:var(--gold);font-weight:700;margin-right:8px}
+  .foot{padding:34px 0 54px;display:flex;justify-content:space-between;align-items:center;
+        font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper3)}
+  .btn-eye{width:15px;height:15px;border-radius:50%;border:2px solid var(--ink);position:relative;flex:none}
+  .btn-eye::before,.btn-eye::after{content:"";position:absolute;left:3px;right:3px;top:6px;height:1.5px;background:var(--ink);opacity:.85}
+  .btn-eye::before{transform:rotate(38deg)} .btn-eye::after{transform:rotate(-38deg)}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="inner">
+    <span class="mark">Doctrine Labs · Studio OS</span>
+    <span class="sp"></span>
+    <a class="btn" href="live.html">Brenda Arts</a>
+    <a class="btn" href="#lanes">Lanes</a>
+    <a class="btn" href="#questions">Questions</a>
+    <a class="btn" href="assets.html">Work</a>
+    <a class="btn" href="models.html">3D</a>
+    <a class="btn holo" href="/radar/">Grant Radar</a>
+    <a class="btn" href="BRENDA-ARTS-Studio-OS.pdf" download>PDF</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow">Prepared for Spencer Garland</div>
+    <h1>A studio operating<br/>system for BRENDA ARTS</h1>
+    <p class="lead" style="margin-top:22px">
+      You are currently the operating system for two full pipelines at once — making the film,
+      and running the studio. Every piece of state lives in your head until you move it somewhere
+      else. This is a map of the lanes where that can stop being true.
+    </p>
+    <div class="stats">
+      <div class="stat"><div class="v hot" id="countdown">18</div><div class="l">days to Counter of Sheep</div></div>
+      <div class="stat"><div class="v" style="color:var(--paper)">12</div><div class="l">lanes on the table</div></div>
+      <div class="stat"><div class="v" style="color:var(--yellow-deep)">25</div><div class="l">pipeline stages you hold in your head</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">What I heard</div>
+    <h2>Two pipelines. One person holding both.</h2>
+    <p class="lead">Neither workflow is unusual on its own. The friction is that you are the
+    connective tissue between them — and that job has no off switch.</p>
+    <div class="g2" style="margin-top:30px">
+      <div>
+        <h3 style="color:var(--gold)">Creative — Counter of Sheep</h3>
+        <div class="pipe">
+          <span>Concept art</span><span>Character &amp; environment</span><span>Into Blender</span>
+          <span>Modeling</span><span>Rigging</span><span>Mocap</span><span>Hand animation</span>
+          <span>Lighting</span><span>Rendering</span><span>Premiere</span><span>Sound</span><span>Export</span>
+        </div>
+        <p class="sm" style="margin-top:14px">Twelve stages. Every one produces assets that have to
+        stay findable months later — for the edit, the grant report, and the pitch.</p>
+      </div>
+      <div>
+        <h3 style="color:var(--gold)">Studio — BRENDA ARTS</h3>
+        <div class="pipe">
+          <span>Idea</span><span>Grant research</span><span>Grant writing</span><span>Funding</span>
+          <span>Budget</span><span>Hire artists</span><span>Invoices</span><span>Production</span>
+          <span>Marketing</span><span>Newsletter</span><span>Event</span><span>Documentation</span><span>Reporting</span>
+        </div>
+        <p class="sm" style="margin-top:14px">Thirteen stages. On its own this is an executive
+        director's full-time job — and you are also the artist, the teacher, and the fundraiser.</p>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:28px">
+      <p><strong>One thing worth naming.</strong> When you described your work, you listed it by what
+      felt most urgent — not chronologically, not by project. That isn't disorganization. That's a
+      person holding a dependency graph in working memory. <em>The system's job is to hold the graph
+      so you can hold one thing at a time.</em></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">The shape of it</div>
+    <h2>Not another app. A producer.</h2>
+    <p class="lead">You open the laptop once. It already knows what today costs you.</p>
+    <div class="g25" style="margin-top:28px">
+      <div class="screen">
+        <div class="hd">Good morning, Spencer</div>
+        <div class="dt">Thursday · 14 days to opening</div>
+        <div class="grp">Counter of Sheep</div>
+        <div class="row"><span class="dot d-r"></span>Finish Scene 12 animation<span class="t">4 hrs</span></div>
+        <div class="row"><span class="dot d-y"></span>Samantha invoice still pending<span class="t">$500</span></div>
+        <div class="row"><span class="dot d-g"></span>Table fabrication due<span class="t">Thu</span></div>
+        <div class="grp">Today</div>
+        <div class="row"><span class="dot d-y"></span>PAM CUT<span class="t">2:00 · leave 1:20</span></div>
+        <div class="row" style="padding-left:16px;color:#9c93ad">Bring: laptop · curriculum · budget</div>
+        <div class="grp">Waiting on</div>
+        <div class="row"><span class="dot d-y"></span>Barry — Roundhouse curriculum<span class="t">6 days</span></div>
+        <div class="row"><span class="dot d-y"></span>RACC — report confirmation<span class="t">11 days</span></div>
+        <div class="grp">Network</div>
+        <div class="row">You met Mark Garcia 18 days ago. Follow up?</div>
+        <div class="grp">Rendering</div>
+        <div class="row"><span class="dot d-g"></span>Counter_of_Sheep_v42.blend — 63%<span class="t">done 3:12 PM</span></div>
+      </div>
+      <div>
+        <h3>What makes this different</h3>
+        <ul style="margin-top:12px">
+          <li>It reads from the other lanes. Nothing here is typed twice.</li>
+          <li>Ordered by consequence, not by category or date created.</li>
+          <li>It answers <em>"what did I promise that isn't done?"</em> — the question that actually keeps you up.</li>
+          <li>When the day breaks, it re-plans instead of guilting you.</li>
+        </ul>
+        <div class="rule"></div>
+        <h3>The rule the whole build follows</h3>
+        <p style="margin-top:6px">If a module needs you to maintain it, it's already dead. Capture is
+        one gesture — say it, paste it, forward it. The system files. You never file.</p>
+        <div class="flag">
+          <div class="lbl">Non-negotiable</div>
+          <p>Your students' names, faces, and artwork stay on your machine. They are never sent to
+          anyone's cloud model. Every other tool in this category ships everything off-device.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lanes">
+    <div class="eyebrow">The lanes</div>
+    <h2>Twelve places we can take weight off you</h2>
+    <p class="lead">Open any lane to see what it covers. Tick the ones that matter — that's the
+    fastest way to tell me where to start. Nothing here requires all of it.</p>
+    <div class="lanes" id="lane-list"></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Candidly</div>
+    <h2>Eight things nobody put on your list</h2>
+    <p class="lead">Ranked by what I think each is actually worth to you.</p>
+    <div class="g2" style="margin-top:30px;gap:26px 40px">
+      <div><h3><span class="num">1</span>Impact data</h3><p class="sm">Funders renew on numbers. You've run programs since 2019 and probably can't produce a clean count of students served, hours taught, or schools reached. That count is the difference between $5,000 awards and six-figure ones — and it's the easiest thing here to start collecting.</p></div>
+      <div><h3><span class="num">2</span>Your website</h3><p class="sm">brendaarts.org is live but it's a headline and three sentences. A stranger can't see a single frame of your work or figure out how to hire you. It's the first thing anyone checks after meeting you.</p></div>
+      <div><h3><span class="num">3</span>Speaking as a revenue line</h3><p class="sm">Treefort, Summer Games Fest, Nike HQ, OMSI, CreativeMornings. You're clearly good at it and there's no pipeline, no rate card, no follow-up. That's money you're already qualified for.</p></div>
+      <div><h3><span class="num">4</span>Curriculum as a product</h3><p class="sm">You have years of tested lesson material. Museums and districts buy curriculum. One table serves one room — a licensed curriculum serves a state.</p></div>
+      <div><h3><span class="num">5</span>Contracts and a rate card</h3><p class="sm">You're hiring at $35/hr and working with minors. Contractor agreements, W-9s, release forms, work-for-hire language, and a written rate card. All cheap now, all expensive later.</p></div>
+      <div><h3><span class="num">6</span>Render and asset infrastructure</h3><p class="sm">The largest recoverable time sink for a solo animator: re-finding assets, re-rendering, versions that drift. Unglamorous, immediately felt.</p></div>
+      <div><h3><span class="num">7</span>Archive discipline</h3><p class="sm">Samantha is documenting Aug 21–22. That footage is grant reporting, pitch material, and two years of content — if someone files it properly the first time.</p></div>
+      <div><h3><span class="num">8</span>Festival strategy</h3><p class="sm">You've been in BlackStar. There's a whole circuit that leads to the exact buyers you want, and it runs entirely on deadlines nobody is tracking.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">How we'd do it</div>
+    <h2>The exhibition comes first. Everything else waits.</h2>
+    <p class="lead">There are 18 days until Counter of Sheep opens. Building a four-module system
+    during the worst week of your year would be the wrong kind of help. So we build the one thing
+    that gets you through August, and it quietly collects the data the rest needs anyway.</p>
+    <div class="g3" style="margin-top:30px">
+      <div><h3>Honest about status</h3><p class="sm">Some of this already runs — invoicing, contacts, the daily planner, the local AI. Some is adapted from work we've shipped. Some is genuinely new. We'll tell you which is which every time, and we won't demo anything as done that isn't.</p></div>
+      <div><h3>You approve everything</h3><p class="sm">Nothing auto-posts, auto-sends, or auto-submits. The system drafts and tracks; you decide. Reaching out to the internet is a thing it asks permission for, every time.</p></div>
+      <div><h3>It runs on your machine</h3><p class="sm">Student data, releases, contacts, and finances stay local. That's not a preference — with minors in your files it's the only defensible way to build this.</p></div>
+    </div>
+  </section>
+
+  <section id="questions">
+    <div class="eyebrow">What I need from you</div>
+    <h2>Ten questions</h2>
+    <p class="lead">Answer what you can, in as few words as you like. The ones you can't answer are
+    usually the most interesting. This saves straight to Brandon — nothing is public.</p>
+    <div id="q-list"></div>
+
+    <label class="q">
+      <span class="qt"><i>+</i>Anything else I should know?</span>
+      <textarea id="q-extra" placeholder="Anything at all."></textarea>
+    </label>
+
+    <label class="q">
+      <span class="qt"><i>·</i>Your name, so I know it saved</span>
+      <input type="text" id="q-name" placeholder="Spencer Garland" autocomplete="name" />
+    </label>
+
+    <div class="save">
+      <button class="btn solid" id="save-btn">Save my answers</button>
+      <span class="status" id="save-status">Saves to Brandon's machine. Nothing is public.</span>
+    </div>
+  </section>
+
+  <div class="foot">
+    <span>Doctrine Labs · Studio OS · Draft for discussion</span>
+    <span class="btn-eye"></span>
+    <span>August 2026</span>
+  </div>
+</div>
+
+<script src="lanes.data.js"></script>
+<script>
+/* ---------- countdown to the exhibition ---------- */
+(function(){
+  var show = new Date(2026, 7, 21); // Aug 21 2026
+  var today = new Date(); today.setHours(0,0,0,0);
+  var days = Math.round((show - today) / 86400000);
+  var el = document.getElementById("countdown");
+  if (days > 0) el.textContent = days;
+  else if (days === 0) { el.textContent = "TODAY"; el.style.fontSize = "34px"; }
+  else { el.textContent = Math.abs(days); el.nextElementSibling.textContent = "days since Counter of Sheep opened"; }
+})();
+
+/* ---------- lane cards ---------- */
+var LANES = window.LANES || [];
+var laneHost = document.getElementById("lane-list");
+
+LANES.forEach(function(l){
+  var card = document.createElement("div");
+  card.className = "lane" + (l.hot ? " hot" : "");
+  card.dataset.id = l.id;
+
+  var bullets = l.does.map(function(t){ return "<li>" + t + "</li>"; }).join("");
+  var prompts = l.fill.map(function(t){
+    return '<div class="hint" style="margin:10px 0 5px;color:var(--paper2)">' + t + '</div>' +
+           '<textarea data-fill="' + l.id + '" rows="2"></textarea>';
+  }).join("");
+
+  card.innerHTML =
+    '<div class="top">' +
+      '<div class="id">' + l.id + '</div>' +
+      '<div><div class="nm">' + l.name + '</div><div class="tg">' + l.tag + '</div></div>' +
+      '<div class="chev">&#9662;</div>' +
+    '</div>' +
+    '<div class="body">' +
+      '<p class="lead" style="font-size:18px;margin-bottom:16px">' + l.blurb + '</p>' +
+      '<div class="g25">' +
+        '<div><h3 style="margin-bottom:12px">What we take off you</h3><ul>' + bullets + '</ul></div>' +
+        '<div><h3 style="margin-bottom:4px;color:var(--paper3);font-size:13px;letter-spacing:.16em;text-transform:uppercase">You fill in</h3>' +
+          prompts +
+        '</div>' +
+      '</div>' +
+      '<div class="now"><div class="k">Where this lives today</div><div class="v">' + l.now + '</div></div>' +
+      '<label class="pick"><input type="checkbox" data-pick="' + l.id + '" /><span>This one matters to me</span></label>' +
+    '</div>';
+
+  card.querySelector(".top").addEventListener("click", function(){
+    card.classList.toggle("open");
+  });
+  card.querySelector('[data-pick]').addEventListener("change", function(e){
+    card.classList.toggle("picked", e.target.checked);
+    e.stopPropagation();
+  });
+
+  laneHost.appendChild(card);
+});
+
+/* ---------- the ten questions ---------- */
+var QUESTIONS = [
+  "The Nebraska residency — which institution, which program, which year, and what came out of it?",
+  "Adult Swim and Nickelodeon — credited work, freelance, a pitch, or development?",
+  "Netflix — who did you pitch, what did you pitch, and what was the actual objection they gave you?",
+  "Smithsonian and MoMA — where do those really stand today?",
+  "The RACC $5,000 — what did it obligate you to deliver, and when is the report due?",
+  "Is BRENDA ARTS LLC your only entity? Any fiscal sponsor? Any 501(c)(3) in progress?",
+  "Who holds copyright on student work — the island houses, the BRENDAWORLD rides, the Albina dreams? Do signed releases exist?",
+  "For Aug 21–22, what is genuinely not done — and what would you cut first if you had to cut something?",
+  "What are you in every day? And the exact name of the VR and mocap software you use.",
+  "If this only did one thing perfectly, what would you pick?"
+];
+
+var qHost = document.getElementById("q-list");
+QUESTIONS.forEach(function(q, i){
+  var lab = document.createElement("label");
+  lab.className = "q";
+  lab.innerHTML = '<span class="qt"><i>' + (i+1) + '</i>' + q + '</span>' +
+                  '<textarea data-q="' + (i+1) + '"></textarea>';
+  qHost.appendChild(lab);
+});
+
+/* ---------- collect + persist ---------- */
+function collect(){
+  var picked = [], laneNotes = {};
+  document.querySelectorAll("[data-pick]").forEach(function(el){
+    if (el.checked) picked.push(el.dataset.pick);
+  });
+  document.querySelectorAll("[data-fill]").forEach(function(el){
+    if (el.value.trim()){
+      (laneNotes[el.dataset.fill] = laneNotes[el.dataset.fill] || []).push(el.value.trim());
+    }
+  });
+  var answers = {};
+  document.querySelectorAll("[data-q]").forEach(function(el){
+    if (el.value.trim()) answers[el.dataset.q] = el.value.trim();
+  });
+  return {
+    name: document.getElementById("q-name").value.trim(),
+    lanesPicked: picked,
+    laneNotes: laneNotes,
+    answers: answers,
+    extra: document.getElementById("q-extra").value.trim(),
+    savedAt: new Date().toISOString()
+  };
+}
+
+function restore(d){
+  if (!d) return;
+  if (d.name) document.getElementById("q-name").value = d.name;
+  if (d.extra) document.getElementById("q-extra").value = d.extra;
+  (d.lanesPicked || []).forEach(function(id){
+    var cb = document.querySelector('[data-pick="' + id + '"]');
+    if (cb){ cb.checked = true; cb.closest(".lane").classList.add("picked"); }
+  });
+  Object.keys(d.laneNotes || {}).forEach(function(id){
+    var boxes = document.querySelectorAll('[data-fill="' + id + '"]');
+    (d.laneNotes[id] || []).forEach(function(v, i){ if (boxes[i]) boxes[i].value = v; });
+  });
+  Object.keys(d.answers || {}).forEach(function(n){
+    var t = document.querySelector('[data-q="' + n + '"]');
+    if (t) t.value = d.answers[n];
+  });
+}
+
+/* local draft so nothing is lost on a phone if the tab closes */
+var DRAFT = "brenda-studio-os-draft";
+try { restore(JSON.parse(localStorage.getItem(DRAFT) || "null")); } catch(e){}
+document.addEventListener("input", function(){
+  try { localStorage.setItem(DRAFT, JSON.stringify(collect())); } catch(e){}
+});
+document.addEventListener("change", function(){
+  try { localStorage.setItem(DRAFT, JSON.stringify(collect())); } catch(e){}
+});
+
+/* pull anything already saved on the server */
+fetch("/api/intake").then(function(r){ return r.ok ? r.json() : null; })
+  .then(function(d){ if (d && d.savedAt) restore(d); })
+  .catch(function(){});
+
+var btn = document.getElementById("save-btn");
+var statusEl = document.getElementById("save-status");
+
+btn.addEventListener("click", function(){
+  var payload = collect();
+  btn.disabled = true;
+  statusEl.className = "status";
+  statusEl.textContent = "Saving…";
+  fetch("/api/intake", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  }).then(function(r){
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r.json();
+  }).then(function(){
+    statusEl.className = "status ok";
+    var n = payload.lanesPicked.length;
+    statusEl.textContent = "Saved. " + Object.keys(payload.answers).length + " answers, " +
+      n + " lane" + (n === 1 ? "" : "s") + " picked. Brandon has it.";
+    btn.disabled = false;
+  }).catch(function(){
+    statusEl.className = "status err";
+    statusEl.textContent = "Couldn't reach the server — your answers are still saved in this browser. Try again, or screenshot this page.";
+    btn.disabled = false;
+  });
+});
+</script>
+</body>
+</html>

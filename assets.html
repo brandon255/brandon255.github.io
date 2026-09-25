@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Work — BRENDA ARTS</title>
+<meta name="description" content="Selected work from BRENDA ARTS — the Fifth Space System and Counter of Sheep, documented from drawing to assembled table." />
+<meta name="theme-color" content="#161616" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#161616; --panel:#1f1f1f; --ink:rgba(255,255,255,.92); --ink2:rgba(255,255,255,.55);
+    --gray:#8a8a8a; --rule:1px solid rgba(255,255,255,.22);
+    --pad:clamp(20px,4.5vw,64px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html,body{max-width:100%;overflow-x:hidden}
+  body{background:var(--bg);color:var(--ink);
+       font-family:"Roboto Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:300;line-height:1.6;
+       -webkit-font-smoothing:antialiased;animation:pagein .25s ease-in}
+  @keyframes pagein{from{opacity:0}to{opacity:1}}
+  ::selection{background:#fff;color:#000}
+  img{display:block;max-width:100%}
+  .skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:8px 14px;z-index:200}
+  .skip:focus{left:8px;top:8px}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:baseline;gap:clamp(14px,2.4vw,34px);
+      padding:18px var(--pad);mix-blend-mode:difference;color:#fff}
+  nav a{color:#fff}
+  nav .wm{font-weight:500;font-size:15px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;margin-right:auto}
+  nav a.lnk{font-size:13px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;
+            text-decoration:none;opacity:.75;transition:opacity .18s ease}
+  nav a.lnk:hover{opacity:1}
+  @media (max-width:760px){ nav{flex-wrap:wrap;row-gap:8px} nav a.lnk{font-size:12px} }
+
+  header{position:relative;padding:calc(70px + clamp(40px,7vw,90px)) var(--pad) clamp(28px,4vw,48px)}
+  .kicker{font-size:19px;font-weight:300;letter-spacing:.26em;text-transform:uppercase;color:var(--gray);margin-bottom:22px}
+  .kicker b{color:var(--ink);font-weight:500}
+  h1{font-weight:300;text-transform:uppercase;
+     font-size:clamp(40px,8.5vw,126px);line-height:1;letter-spacing:.03em}
+  header .lead{max-width:46ch;margin-top:20px;font-size:15px;color:var(--ink2);line-height:1.8}
+  /* Brandon's layout pass (editor export, baked Sep 23): holo scaled + repositioned */
+  header .holo{position:absolute;left:calc(var(--pad) + 58vw);top:29vh;transform:translate(-50%,-50%);
+               width:clamp(96px,10.8vw,178px);height:auto;margin:0}
+  header .holo video{display:block;width:100%;height:auto}
+  @media (max-width:840px){
+    header .holo{position:static;transform:none;width:min(52vw,260px);margin:28px auto 0} }
+
+  section{padding:clamp(40px,5.5vw,72px) var(--pad);border-top:var(--rule)}
+  .series-h{display:flex;align-items:baseline;gap:18px;margin-bottom:26px}
+  .series-h .n{font-weight:500;font-size:clamp(18px,2vw,24px);letter-spacing:.06em}
+  .series-h .t{font-size:13px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--gray)}
+
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(16px,2.2vw,30px)}
+  .art{position:relative;overflow:hidden;background:var(--panel);cursor:zoom-in;opacity:0;
+       transform:scale(1.02);transition:opacity .6s ease,transform .7s ease}
+  .art.on{opacity:1;transform:scale(1)}
+  .art.s7{grid-column:span 7} .art.s5{grid-column:span 5}
+  .art img{width:100%;height:100%;object-fit:cover;transition:opacity .25s ease,transform .35s ease}
+  .art .cap{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+            padding:18px 20px;opacity:0;transition:opacity .25s ease}
+  .art .cap b{font-weight:500;font-size:16px;letter-spacing:.08em;text-transform:uppercase}
+  .art .cap span{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2);margin-top:5px}
+  .art:hover img{opacity:.18;transform:scale(1.015)}
+  .art:hover .cap{opacity:1}
+  .art:focus-visible{outline:1px solid #fff;outline-offset:3px}
+  @media (max-width:760px){ .art.s7,.art.s5{grid-column:span 12} }
+
+  .vid{grid-column:span 12;background:#161616}
+  .vid video{width:100%;max-height:78vh;display:block}
+
+  footer{background:#161616;color:#fff;padding:clamp(40px,6vw,70px) var(--pad) 30px;margin-top:clamp(40px,6vw,70px);border-top:var(--rule)}
+  footer .row{display:flex;flex-wrap:wrap;gap:14px 34px;font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+  footer .row a{text-decoration:none;opacity:.7;transition:opacity .18s}
+  footer .row a:hover{opacity:1}
+  footer .row .r{margin-left:auto;opacity:.5}
+
+  .lb{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.95);display:none;
+      align-items:center;justify-content:center;cursor:zoom-out;padding:6vh 4vw}
+  .lb.on{display:flex}
+  .lb img{max-width:100%;max-height:100%;object-fit:contain}
+  .lb .cap{position:fixed;left:0;right:0;bottom:0;padding:16px 20px;text-align:center;
+           font-size:13px;letter-spacing:.14em;color:rgba(255,255,255,.75);text-transform:uppercase}
+  .lb .cap b{color:#fff}
+  .lb .nav{position:fixed;top:50%;transform:translateY(-50%);font-size:28px;line-height:1;color:#fff;
+           background:none;border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:12px 16px;
+           cursor:pointer;user-select:none;transition:border-color .18s ease}
+  .lb .nav:hover{border-color:#fff}
+  .lb .prev{left:14px} .lb .next{right:14px}
+  .lb .x{position:fixed;top:16px;right:18px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+         color:#fff;background:none;border:1px solid rgba(255,255,255,.4);border-radius:999px;
+         padding:9px 16px;cursor:pointer}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav aria-label="Main">
+  <a class="wm" href="/">BRENDA ARTS</a>
+  <a class="lnk" href="assets.html" aria-current="page">Work</a>
+  <a class="lnk" href="live.html#exhibition">Exhibition</a>
+  <a class="lnk" href="live.html#process">Process</a>
+  <a class="lnk" href="live.html#about">About</a>
+  <a class="lnk" href="models.html">3D</a>
+  <a class="lnk" href="studio-os.html">Studio OS</a>
+  <a class="lnk" href="/radar/">Grant Radar</a>
+</nav>
+
+<header>
+  <div class="kicker"><b>BRENDA ARTS</b> — Spencer Garland</div>
+  <h1>Work</h1>
+  <p class="lead">The Fifth Space System, documented from studio table to assembled island —
+  printed piece by piece, then played. Click any image to see it large.</p>
+  <figure class="holo" aria-label="Counter of Sheep — animated artwork loop">
+    <video src="assets/hologram-loop.mp4" autoplay muted loop playsinline preload="metadata"></video>
+  </figure>
+</header>
+
+<main id="main">
+
+  <section aria-label="Counter of Sheep">
+    <div class="series-h"><span class="n">01</span><span class="t">Counter of Sheep — the installation</span></div>
+    <div class="grid">
+      <figure class="art s7" tabindex="0" role="button" data-cap="Counter of Sheep — installed|The Fifth Space System, with the artists">
+        <img src="assets/fifth-space-system-install.jpg" alt="Spencer Garland and a collaborator behind the assembled Fifth Space System table" loading="lazy" />
+        <figcaption class="cap"><b>Counter of Sheep — installed</b><span>The Fifth Space System, with the artists</span></figcaption>
+      </figure>
+      <figure class="art s5" tabindex="0" role="button" data-cap="The island, from above|Modular tiles, houses, and the sheep">
+        <img src="assets/fifth-space-table-overhead.jpg" alt="Overhead view of the Fifth Space System table" loading="lazy" />
+        <figcaption class="cap"><b>The island, from above</b><span>Modular tiles, houses, and the sheep</span></figcaption>
+      </figure>
+      <figure class="art s5" tabindex="0" role="button" data-cap="Counter of Sheep — figure|FDM print, studio">
+        <img src="assets/counter-of-sheep-figure.jpg" alt="Large black printed sheep figure on a stepped base" loading="lazy" />
+        <figcaption class="cap"><b>Counter of Sheep — figure</b><span>FDM print · studio</span></figcaption>
+      </figure>
+      <figure class="art s7" tabindex="0" role="button" data-cap="Sheep — fresh off the bed|Contour topography in hand">
+        <img src="assets/sheep-print-closeup.jpg" alt="Close-up of a freshly printed sheep figure over the build plate" loading="lazy" />
+        <figcaption class="cap"><b>Sheep — fresh off the bed</b><span>Contour topography in hand</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section aria-label="Process">
+    <div class="series-h"><span class="n">02</span><span class="t">Process — print &amp; assembly</span></div>
+    <div class="grid">
+      <figure class="art s5" tabindex="0" role="button" data-cap="Snake &amp; puzzle tiles|Work in progress, studio table">
+        <img src="assets/studio-snake-and-tiles.jpg" alt="A long printed snake and two puzzle-piece tiles on a workbench" loading="lazy" />
+        <figcaption class="cap"><b>Snake &amp; puzzle tiles</b><span>Work in progress · studio table</span></figcaption>
+      </figure>
+      <figure class="art s7" tabindex="0" role="button" data-cap="Nested for the plate|Slicer layout, Fifth Space System parts">
+        <img src="assets/slicer-print-layout.jpg" alt="Slicer software laying out parts on a virtual print bed" loading="lazy" />
+        <figcaption class="cap"><b>Nested for the plate</b><span>Slicer layout · Fifth Space System parts</span></figcaption>
+      </figure>
+      <div class="vid">
+        <video src="assets/print-timelapse.mp4" poster="assets/sheep-print-closeup.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Timelapse of the 3D printer building island pieces"></video>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="row">
+    <a href="/">BRENDA ARTS</a>
+    <a href="models.html">3D models</a>
+    <a href="studio-os.html">Studio OS</a>
+    <a href="/radar/">Grant Radar</a>
+    <span class="r">Portland, Oregon · © 2026</span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-label="Image viewer">
+  <button class="x" id="lb-x">Close</button>
+  <button class="nav prev" id="lb-p" aria-label="Previous">&#8249;</button>
+  <img id="lb-i" alt="" />
+  <button class="nav next" id="lb-n" aria-label="Next">&#8250;</button>
+  <div class="cap" id="lb-c"></div>
+</div>
+
+<script>
+const arts = [...document.querySelectorAll('.art')];
+const io = new IntersectionObserver((es) => {
+  for (const e of es) if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+}, { threshold: 0.1 });
+arts.forEach((el) => io.observe(el));
+
+const lb = document.getElementById('lb'), li = document.getElementById('lb-i'),
+      lc = document.getElementById('lb-c');
+let at = 0;
+function show(i){
+  at = (i + arts.length) % arts.length;
+  const fig = arts[at];
+  li.src = fig.querySelector('img').src;
+  li.alt = fig.querySelector('img').alt;
+  const [t, s] = fig.dataset.cap.split('|');
+  lc.innerHTML = '<b>' + t + '</b> — ' + s + ' &nbsp;·&nbsp; ' + (at + 1) + ' / ' + arts.length;
+  lb.classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function hide(){ lb.classList.remove('on'); document.body.style.overflow = ''; }
+arts.forEach((fig, i) => {
+  fig.addEventListener('click', () => show(i));
+  fig.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(i); } });
+});
+lb.addEventListener('click', (e) => { if (e.target === lb || e.target === li) hide(); });
+document.getElementById('lb-x').addEventListener('click', hide);
+document.getElementById('lb-p').addEventListener('click', (e) => { e.stopPropagation(); show(at - 1); });
+document.getElementById('lb-n').addEventListener('click', (e) => { e.stopPropagation(); show(at + 1); });
+addEventListener('keydown', (e) => {
+  if (!lb.classList.contains('on')) return;
+  if (e.key === 'Escape') hide();
+  if (e.key === 'ArrowLeft') show(at - 1);
+  if (e.key === 'ArrowRight') show(at + 1);
+});
+</script>
+</body>
+</html>

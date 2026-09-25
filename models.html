@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>3D — the island, piece by piece — BRENDA ARTS</title>
+<meta name="description" content="Every component of the Fifth Space System as an interactive 3D model, built straight from the print files." />
+<meta name="theme-color" content="#161616" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#161616; --panel:#1f1f1f; --ink:rgba(255,255,255,.92); --ink2:rgba(255,255,255,.55);
+    --gray:#8a8a8a; --rule:1px solid rgba(255,255,255,.22);
+    --pad:clamp(20px,4.5vw,64px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{max-width:100%;overflow-x:hidden}
+  body{background:var(--bg);color:var(--ink);
+       font-family:"Roboto Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:300;line-height:1.6;
+       -webkit-font-smoothing:antialiased;animation:pagein .25s ease-in}
+  @keyframes pagein{from{opacity:0}to{opacity:1}}
+  ::selection{background:#fff;color:#000}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:baseline;gap:clamp(14px,2.4vw,34px);
+      padding:18px var(--pad);mix-blend-mode:difference;color:#fff}
+  nav a{color:#fff}
+  nav .wm{font-weight:500;font-size:15px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;margin-right:auto}
+  nav a.lnk{font-size:13px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;
+            text-decoration:none;opacity:.75;transition:opacity .18s ease}
+  nav a.lnk:hover{opacity:1}
+  @media (max-width:760px){ nav{flex-wrap:wrap;row-gap:8px} nav a.lnk{font-size:12px} }
+
+  header{padding:calc(70px + clamp(40px,7vw,90px)) var(--pad) clamp(24px,3vw,40px)}
+  .kicker{font-size:13px;font-weight:300;letter-spacing:.26em;text-transform:uppercase;color:var(--gray);margin-bottom:22px}
+  .kicker b{color:var(--ink);font-weight:500}
+  h1{font-weight:300;text-transform:uppercase;
+     font-size:clamp(36px,6vw,88px);line-height:1.02;letter-spacing:.03em}
+  header .lead{max-width:56ch;margin-top:18px;font-size:15px;color:var(--ink2);line-height:1.8}
+  .note{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-top:16px;max-width:80ch;line-height:1.8}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+        gap:clamp(16px,2.2vw,30px);padding:0 var(--pad) clamp(56px,7vw,100px)}
+
+  .card{border:var(--rule);background:var(--bg);cursor:pointer;display:flex;flex-direction:column;
+        transition:transform .2s ease}
+  .card:hover{transform:translateY(-3px)}
+  .card:focus-visible{outline:1px solid #fff;outline-offset:3px}
+  .thumb{position:relative;width:100%;aspect-ratio:4/3;background:#1d1d1d;
+         border-bottom:var(--rule);overflow:hidden}
+  .thumb canvas{width:100%;height:100%;display:block}
+  .thumb .pending{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+                  font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#777}
+  .thumb .open{position:absolute;right:10px;top:10px;font-size:12px;font-weight:500;border-radius:999px;
+               letter-spacing:.16em;text-transform:uppercase;color:#000;background:#fff;
+               padding:5px 11px;opacity:0;transition:opacity .15s}
+  .card:hover .thumb .open{opacity:1}
+
+  .meta{padding:16px 18px 18px}
+  .meta .nm{font-weight:500;font-size:17px;letter-spacing:.06em;text-transform:uppercase}
+  .meta .bl{font-size:14px;color:var(--ink2);margin-top:6px;line-height:1.6}
+  .meta .st{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-top:12px;
+            border-top:var(--rule);padding-top:10px}
+  .meta .st b{color:var(--ink);font-weight:500}
+
+  footer{background:#161616;color:#fff;padding:clamp(40px,6vw,70px) var(--pad) 30px;border-top:var(--rule)}
+  footer .row{display:flex;flex-wrap:wrap;gap:14px 34px;font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+  footer .row a{text-decoration:none;opacity:.7;transition:opacity .18s}
+  footer .row a:hover{opacity:1}
+  footer .row .r{margin-left:auto;opacity:.5}
+
+  .err{border:var(--rule);background:var(--panel);padding:20px;margin:0 var(--pad) 30px;
+       font-size:15px;color:var(--ink2)}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <a class="wm" href="/">BRENDA ARTS</a>
+  <a class="lnk" href="assets.html">Work</a>
+  <a class="lnk" href="live.html#exhibition">Exhibition</a>
+  <a class="lnk" href="live.html#process">Process</a>
+  <a class="lnk" href="live.html#about">About</a>
+  <a class="lnk" href="models.html" aria-current="page">3D</a>
+  <a class="lnk" href="studio-os.html">Studio OS</a>
+  <a class="lnk" href="/radar/">Grant Radar</a>
+</nav>
+
+<header>
+  <div class="kicker"><b>Fifth Space System</b> — components</div>
+  <h1>The island, piece by piece</h1>
+  <p class="lead">Every component of the Fifth Space System, straight from the print files.
+  Click any one to open it full screen — drag to spin, scroll to zoom, orbit underneath
+  to see how it sits on the table.</p>
+  <p class="note" id="note"></p>
+</header>
+
+<div id="err"></div>
+<div class="grid" id="grid"></div>
+
+<footer>
+  <div class="row">
+    <a href="/">BRENDA ARTS</a>
+    <a href="assets.html">Work</a>
+    <a href="studio-os.html">Studio OS</a>
+    <a href="/radar/">Grant Radar</a>
+    <span class="r">Portland, Oregon · © 2026</span>
+  </div>
+</footer>
+
+<script type="importmap">
+{ "imports": {
+    "three": "./vendor/three/build/three.module.js",
+    "three/addons/": "./vendor/three/examples/jsm/"
+} }
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+
+const grid = document.getElementById('grid');
+const note = document.getElementById('note');
+
+/* One shared WebGL renderer draws every thumbnail, then each frame is copied
+   into the card's own 2D canvas. Twelve live WebGL contexts would be refused
+   on most phones; one is not. */
+const RATIO = Math.min(devicePixelRatio || 1, 2);
+const THUMB_W = Math.round(520 * RATIO), THUMB_H = Math.round(390 * RATIO);
+
+/* Pixel ratio stays at 1 and the size is scaled by hand instead. The renderer's
+   own pixel-ratio scaling changes the backing buffer without changing the size
+   drawImage() reads, which crops the copy to the top-left corner. */
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+renderer.setPixelRatio(1);
+renderer.setSize(THUMB_W, THUMB_H, false);
+
+const material = new THREE.MeshStandardMaterial({
+  color: 0xd8d3c8, roughness: 0.62, metalness: 0.04, side: THREE.DoubleSide,
+});
+
+const cards = [];
+
+function makeScene(geometry, entry){
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x141414);
+  scene.add(new THREE.HemisphereLight(0xdfe6f2, 0x1a1f2b, 1.15));
+
+  geometry.computeVertexNormals();
+  geometry.computeBoundingBox();
+  const size = new THREE.Vector3(); geometry.boundingBox.getSize(size);
+  const center = new THREE.Vector3(); geometry.boundingBox.getCenter(center);
+
+  // frame the main body, not a stray scrap off to one side (see the build tool)
+  if (entry && entry.focus){
+    const f = new THREE.Box3(
+      new THREE.Vector3(...entry.focus.min),
+      new THREE.Vector3(...entry.focus.max)
+    );
+    f.getCenter(center);
+    f.getSize(size);
+  }
+  geometry.translate(-center.x, -center.y, -center.z);
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.x = -Math.PI / 2;
+  scene.add(mesh);
+
+  const span = Math.max(size.x, size.y, size.z) || 1;
+  const key = new THREE.DirectionalLight(0xfff3dd, 2.0);
+  key.position.set(span, span * 1.6, span * 0.9); scene.add(key);
+  const rim = new THREE.DirectionalLight(0xbcd0dc, 0.5);
+  rim.position.set(-span * 1.2, span * 0.4, -span); scene.add(rim);
+
+  const fov = 38, aspect = THUMB_W / THUMB_H;
+  const radius = Math.hypot(size.x, size.y, size.z) / 2 || span * 0.6;
+  const vFov = THREE.MathUtils.degToRad(fov);
+  const hFov = 2 * Math.atan(Math.tan(vFov / 2) * aspect);
+  // fit the bounding sphere in both axes, with a little breathing room
+  const dist = Math.max(radius / Math.sin(vFov / 2), radius / Math.sin(hFov / 2)) * 1.22;
+
+  const camera = new THREE.PerspectiveCamera(fov, aspect, dist / 500, dist * 40);
+  camera.position.set(0.62, 0.48, 0.72).normalize().multiplyScalar(dist);
+  camera.lookAt(0, 0, 0);
+
+  return { scene, camera, mesh };
+}
+
+function addCard(entry){
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.tabIndex = 0;
+  card.setAttribute('role', 'link');
+  card.setAttribute('aria-label', 'Open ' + entry.name + ' in a new tab');
+
+  const kb = (entry.bytes / 1024).toFixed(0);
+  card.innerHTML =
+    '<div class="thumb"><div class="pending">Loading…</div><div class="open">Open &#8599;</div></div>' +
+    '<div class="meta">' +
+      '<div class="nm">' + entry.name + '</div>' +
+      '<div class="bl">' + entry.blurb + '</div>' +
+      '<div class="st"><b>' + entry.tris.toLocaleString() + '</b> triangles · ' + kb + ' KB · ' +
+        'from <b>' + entry.sourceTris.toLocaleString() + '</b> in the print file</div>' +
+    '</div>';
+
+  const href = 'model.html?m=' + encodeURIComponent(entry.slug);
+  /* Single click already opens the tab, so there is deliberately no dblclick
+     handler — a double click would otherwise fire click twice and spawn three. */
+  const open = () => window.open(href, '_blank', 'noopener');
+  card.addEventListener('click', open);
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+  });
+
+  grid.appendChild(card);
+
+  const thumb = card.querySelector('.thumb');
+  const pending = thumb.querySelector('.pending');
+  const canvas = document.createElement('canvas');
+  canvas.width = THUMB_W; canvas.height = THUMB_H;
+  const ctx = canvas.getContext('2d');
+  thumb.insertBefore(canvas, pending);
+
+  let hovered = false;
+  card.addEventListener('mouseenter', () => { hovered = true; });
+  card.addEventListener('mouseleave', () => { hovered = false; });
+
+  new STLLoader().load('models/' + entry.file, (geometry) => {
+    const s = makeScene(geometry, entry);
+    pending.remove();
+    cards.push({ ...s, ctx, isHovered: () => hovered, dirty: true });
+  }, undefined, () => { pending.textContent = 'Preview unavailable'; });
+}
+
+fetch('models/models.json')
+  .then(r => r.json())
+  .then(list => {
+    const srcMb = list.reduce((s, m) => s + m.sourceBytes, 0) / 1048576;
+    const outMb = list.reduce((s, m) => s + m.bytes, 0) / 1048576;
+    note.textContent =
+      list.length + ' components. The print files total ' + srcMb.toFixed(0) +
+      ' MB — far too heavy for a browser — so these are web previews built from them, ' +
+      outMb.toFixed(1) + ' MB in total. The originals are untouched.';
+    list.forEach(addCard);
+  })
+  .catch(() => {
+    document.getElementById('err').innerHTML =
+      '<div class="err">Could not read the model list. Open this page through the share link ' +
+      'rather than as a local file.</div>';
+  });
+
+(function loop(){
+  requestAnimationFrame(loop);
+  for (const c of cards){
+    if (c.isHovered()) c.mesh.rotation.z += 0.008;
+    else if (!c.dirty) continue;
+    renderer.render(c.scene, c.camera);
+    c.ctx.clearRect(0, 0, THUMB_W, THUMB_H);
+    c.ctx.drawImage(renderer.domElement, 0, 0, THUMB_W, THUMB_H);
+    c.dirty = false;
+  }
+})();
+</script>
+</body>
+</html>

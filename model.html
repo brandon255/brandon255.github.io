@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Counter of Sheep — model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#000; --panel:#1f1f1f; --line:#2a2a2a; --line2:#4a4a4a;
+    --paper:rgba(255,255,255,.92); --paper2:#e2e2e2; --paper3:#8a8a8a;
+    --gold:#fff; --teal:#2fae5f; --grape:#7c5cbf;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden}
+  body{background:#161616;color:var(--paper);
+       font-family:"Roboto Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:300;-webkit-font-smoothing:antialiased}
+
+  #stage{position:fixed;inset:0;touch-action:none}
+  canvas{display:block}
+
+  .bar{position:fixed;top:0;left:0;right:0;z-index:10;
+       display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+       padding:14px 20px;background:linear-gradient(180deg,rgba(0,0,0,.94),rgba(0,0,0,0));
+       pointer-events:none}
+  .bar > *{pointer-events:auto}
+  .title{font-weight:500;font-size:17px;letter-spacing:.08em;text-transform:uppercase;line-height:1.2}
+  .sub{font-size:13px;color:var(--paper3);margin-top:2px;letter-spacing:.06em}
+  .sp{flex:1}
+  .btn{font-size:12.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border:1px solid var(--line2);
+       color:var(--paper);background:rgba(0,0,0,.6);cursor:pointer;border-radius:999px;
+       text-decoration:none;display:inline-block}
+  .btn:hover{border-color:var(--gold);color:var(--gold)}
+  .btn.on{border-color:var(--gold);color:var(--gold)}
+
+  .hud{position:fixed;left:20px;bottom:18px;z-index:10;font-size:12.5px;color:var(--paper3);line-height:1.7;letter-spacing:.06em}
+  .hud b{color:var(--paper2);font-weight:500}
+  .spec{position:fixed;right:20px;bottom:18px;z-index:10;text-align:right;
+        font-size:12.5px;color:var(--paper3);line-height:1.7;letter-spacing:.06em}
+  .spec b{color:var(--teal);font-weight:500}
+
+  .msg{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+       flex-direction:column;gap:12px;z-index:20;background:var(--ink);text-align:center;padding:24px}
+  .msg .t{font-size:16px;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
+  .msg .d{font-size:14px;color:var(--paper3);max-width:44ch}
+  .msg.hide{display:none}
+  @media (max-width:600px){ .hud{display:none} .title{font-size:15px} }
+</style>
+</head>
+<body>
+
+<div id="stage"></div>
+
+<div class="bar">
+  <div>
+    <div class="title" id="m-name">Loading…</div>
+    <div class="sub" id="m-blurb"></div>
+  </div>
+  <div class="sp"></div>
+  <button class="btn" id="btn-spin">Spin</button>
+  <button class="btn" id="btn-wire">Wireframe</button>
+  <button class="btn" id="btn-grid">Grid</button>
+  <button class="btn" id="btn-reset">Reset view</button>
+  <a class="btn" href="models.html">All models</a>
+</div>
+
+<div class="hud">
+  <b>Drag</b> to rotate · <b>Scroll</b> to zoom · <b>Right-drag</b> to pan<br/>
+  Orbit below the horizon to look underneath.
+</div>
+<div class="spec" id="m-spec"></div>
+
+<div class="msg" id="msg">
+  <div class="t" id="msg-t">Loading model…</div>
+  <div class="d" id="msg-d">Large meshes take a moment on a phone.</div>
+</div>
+
+<script type="importmap">
+{ "imports": {
+    "three": "./vendor/three/build/three.module.js",
+    "three/addons/": "./vendor/three/examples/jsm/"
+} }
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const slug = new URLSearchParams(location.search).get('m') || 'puzzlepieceshape';
+const stage = document.getElementById('stage');
+const msg = document.getElementById('msg');
+
+function fail(title, detail){
+  document.getElementById('msg-t').textContent = title;
+  document.getElementById('msg-d').textContent = detail;
+  msg.classList.remove('hide');
+}
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+/* No shadow map: the only thing under the model is a line grid, which cannot
+   receive a shadow, so all it produced was self-shadow acne across flat faces. */
+stage.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x000000);
+
+const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, 0.01, 100000);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.rotateSpeed = 0.85;
+// no polar limits — orbiting under the model is the whole point
+controls.minPolarAngle = 0;
+controls.maxPolarAngle = Math.PI;
+
+scene.add(new THREE.HemisphereLight(0xdfe6f2, 0x1a1f2b, 1.15));
+const key = new THREE.DirectionalLight(0xfff3dd, 2.0);
+key.position.set(1, 1.6, 0.9);
+scene.add(key);
+const rim = new THREE.DirectionalLight(0xbcd0dc, 0.5);
+rim.position.set(-1.2, 0.5, -1);
+scene.add(rim);
+const under = new THREE.DirectionalLight(0xdfd8c8, 0.35);
+under.position.set(0, -1, 0.3);
+scene.add(under);
+
+const material = new THREE.MeshStandardMaterial({
+  color: 0xd8d3c8, roughness: 0.62, metalness: 0.04,
+  side: THREE.DoubleSide, flatShading: false,
+});
+
+let mesh = null, grid = null, spinning = false, home = null;
+let radius = 1, userMoved = false;
+
+/** Distance that fits the model's bounding sphere in BOTH axes — a tall, narrow
+    phone viewport has a much smaller horizontal field of view than a monitor. */
+function fitDistance(){
+  const vFov = THREE.MathUtils.degToRad(camera.fov);
+  const hFov = 2 * Math.atan(Math.tan(vFov / 2) * camera.aspect);
+  return Math.max(radius / Math.sin(vFov / 2), radius / Math.sin(hFov / 2)) * 1.15;
+}
+
+function placeCamera(){
+  const d = fitDistance();
+  const dir = new THREE.Vector3(0.62, 0.48, 0.72).normalize();
+  camera.position.copy(dir.multiplyScalar(d));
+  camera.near = d / 500;
+  camera.far = d * 40;
+  camera.updateProjectionMatrix();
+  controls.target.set(0, 0, 0);
+  controls.update();
+  home = { pos: camera.position.clone(), target: controls.target.clone() };
+}
+
+function frame(geometry, entry){
+  geometry.computeVertexNormals();
+  geometry.computeBoundingBox();
+  const box = geometry.boundingBox;
+  const size = new THREE.Vector3(); box.getSize(size);
+  const center = new THREE.Vector3(); box.getCenter(center);
+
+  /* Frame on the main body rather than the full extents. A couple of the print
+     files carry a stray scrap off to one side; centering on everything would
+     leave the actual house as a speck. All the geometry still gets drawn. */
+  if (entry && entry.focus){
+    const f = new THREE.Box3(
+      new THREE.Vector3(...entry.focus.min),
+      new THREE.Vector3(...entry.focus.max)
+    );
+    f.getCenter(center);
+    f.getSize(size);
+  }
+
+  // center the subject on the origin
+  geometry.translate(-center.x, -center.y, -center.z);
+
+  mesh = new THREE.Mesh(geometry, material);
+  // STLs from CAD are usually Z-up; three is Y-up
+  mesh.rotation.x = -Math.PI / 2;
+  scene.add(mesh);
+
+  const span = Math.max(size.x, size.y, size.z) || 1;
+  radius = Math.hypot(size.x, size.y, size.z) / 2 || span * 0.6;
+
+  grid = new THREE.GridHelper(span * 3, 24, 0x4a4360, 0x35304a);
+  grid.position.y = -span * 0.52;
+  grid.material.opacity = 0.5;
+  grid.material.transparent = true;
+  scene.add(grid);
+
+  key.position.set(span, span * 1.6, span * 0.9);
+  rim.position.set(-span * 1.2, span * 0.5, -span);
+  under.position.set(0, -span, span * 0.3);
+
+  placeCamera();
+  return size;
+}
+
+fetch('models/models.json')
+  .then(r => r.json())
+  .then(list => {
+    const entry = list.find(m => m.slug === slug) || list[0];
+    if (!entry) throw new Error('no models in manifest');
+
+    document.title = entry.name + ' — Counter of Sheep';
+    document.getElementById('m-name').textContent = entry.name;
+    document.getElementById('m-blurb').textContent = entry.blurb;
+
+    new STLLoader().load('models/' + entry.file, (geometry) => {
+      frame(geometry, entry);
+      const s = entry.size;
+      document.getElementById('m-spec').innerHTML =
+        '<b>' + entry.tris.toLocaleString() + '</b> triangles shown · ' +
+        entry.sourceTris.toLocaleString() + ' in the print file<br/>' +
+        'Model bounds <b>' + s.x + ' × ' + s.y + ' × ' + s.z + '</b> mm';
+      msg.classList.add('hide');
+    },
+    (ev) => {
+      if (ev.lengthComputable) {
+        document.getElementById('msg-t').textContent =
+          'Loading ' + entry.name + ' — ' + Math.round((ev.loaded / ev.total) * 100) + '%';
+      }
+    },
+    () => fail('Could not load that model', 'The file may still be building. Try the gallery.'));
+  })
+  .catch(() => fail('Could not read the model list', 'Open this page through the share link, not as a local file.'));
+
+/* ---- controls ---- */
+const bSpin = document.getElementById('btn-spin');
+const bWire = document.getElementById('btn-wire');
+const bGrid = document.getElementById('btn-grid');
+
+bSpin.addEventListener('click', () => {
+  spinning = !spinning;
+  bSpin.classList.toggle('on', spinning);
+});
+bWire.addEventListener('click', () => {
+  material.wireframe = !material.wireframe;
+  bWire.classList.toggle('on', material.wireframe);
+});
+bGrid.addEventListener('click', () => {
+  if (!grid) return;
+  grid.visible = !grid.visible;
+  bGrid.classList.toggle('on', !grid.visible);
+});
+document.getElementById('btn-reset').addEventListener('click', () => {
+  if (!mesh) return;
+  userMoved = false;
+  placeCamera();
+});
+
+controls.addEventListener('start', () => { userMoved = true; });
+
+/** Window resize misses panel/split-view changes, so watch the element too.
+    Re-frame only while the viewer is still showing the default view — once
+    Spencer has moved the camera, resizing must not yank it back. */
+function resize(){
+  const w = stage.clientWidth || innerWidth;
+  const h = stage.clientHeight || innerHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h, false);
+  renderer.domElement.style.width = '100%';
+  renderer.domElement.style.height = '100%';
+  if (mesh && !userMoved) placeCamera();
+}
+addEventListener('resize', resize);
+new ResizeObserver(resize).observe(stage);
+resize();
+
+(function loop(){
+  requestAnimationFrame(loop);
+  if (spinning && mesh) mesh.rotation.z += 0.0045;
+  controls.update();
+  renderer.render(scene, camera);
+})();
+</script>
+</body>
+</html>
