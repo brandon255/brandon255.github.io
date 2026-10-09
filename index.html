@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='8' width='28' height='22' rx='4' fill='%23facc15' stroke='%23232326' stroke-width='3'/%3E%3Cpath d='M12 8v-2a4 4 0 1 1 8 0v2' fill='%23e03131' stroke='%23232326' stroke-width='3'/%3E%3C/svg%3E" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>BRENDA ARTS — Spencer Garland</title>
@@ -9,7 +10,7 @@
 <meta name="theme-color" content="#161616" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet" />
 <style>
   :root{
     --bg:#161616; --panel:#1f1f1f; --ink:rgba(255,255,255,.92); --ink2:rgba(255,255,255,.55);
@@ -164,6 +165,61 @@
   .ytcap{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);padding-top:14px;line-height:1.9}
   .ytcap a{color:var(--ink)}
 
+
+  /* ---------- homepage explainer: the game, upper right ---------- */
+  .game-card{position:absolute;top:clamp(120px,16vh,170px);right:var(--pad);z-index:3;max-width:340px;
+    background:#faf9f6;color:#232326;border:3px solid #232326;border-radius:18px;padding:18px 18px 16px;
+    box-shadow:6px 6px 0 #facc15;transform:rotate(1.2deg)}
+  .game-card .gk{font-family:"Fredoka","Roboto Mono",sans-serif;font-weight:700;font-size:12px;
+    letter-spacing:.16em;text-transform:uppercase;color:#5b63ba}
+  .game-card p{font-size:12.5px;line-height:1.6;margin-top:8px}
+  .game-card a{display:inline-block;margin-top:12px;background:#facc15;color:#232326;text-decoration:none;
+    font-family:"Fredoka","Roboto Mono",sans-serif;font-weight:600;font-size:13px;padding:9px 16px;
+    border-radius:999px;border:2.5px solid #232326;box-shadow:3px 3px 0 #232326;transition:transform .12s,box-shadow .12s}
+  .game-card a:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 #232326}
+  @media (max-width:980px){ .game-card{display:none} }
+
+ /* ---------- globe ---------- */
+  .globe-wrap{position:relative;padding:clamp(10px,3vw,30px) var(--pad) 0}
+  #globe{width:100%;height:clamp(420px,66vh,720px);border-radius:20px;background:
+         radial-gradient(120% 120% at 30% 20%, #23233a 0%, #16161c 55%, #101014 100%);
+         cursor:grab;touch-action:none;outline:1px solid #2c2c34}
+  #globe.grabbing{cursor:grabbing}
+  .globe-hint{position:absolute;left:calc(var(--pad) + 18px);bottom:18px;font-size:11px;letter-spacing:.18em;
+              text-transform:uppercase;color:rgba(255,255,255,.55);pointer-events:none}
+  .legend{position:absolute;right:calc(var(--pad) + 18px);top:18px;display:flex;gap:14px;font-size:11px;
+          letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);pointer-events:none}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+  /* city card */
+  #city-card{position:absolute;top:24px;right:calc(var(--pad) + 24px);width:min(340px,calc(100% - 48px));
+             background:var(--panel);color:var(--ink);border-radius:16px;padding:22px 22px 18px;
+             box-shadow:0 18px 50px rgba(0,0,0,.5);display:none;z-index:5}
+  #city-card.open{display:block;animation:pop .28s cubic-bezier(.2,1.4,.4,1)}
+  @keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+  #city-card .cc-kicker{font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+  #city-card h2{font-size:22px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin:6px 0 2px}
+  #city-card .cc-country{font-size:12px;color:var(--ink2);letter-spacing:.14em;text-transform:uppercase}
+  #city-card .cc-lang{margin-top:12px;font-size:12px;color:var(--ink2)}
+  #city-card .cc-lang b{color:var(--ink);font-weight:500}
+  #city-card .cc-love{margin-top:14px;background:var(--panel2);border-radius:12px;padding:12px 14px;font-size:13px}
+  #city-card .cc-love .t{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+  #city-card .cc-buddy{margin-top:14px;background:var(--purple-soft);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--ink)}
+  #city-card .cc-buddy .t{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);margin-bottom:6px}
+  #city-card .cc-cta{display:block;margin-top:16px;text-align:center;background:var(--ink);color:#fff;text-decoration:none;
+                     font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+                     padding:12px 14px;border-radius:999px}
+  #city-card .cc-cta:hover{background:var(--purple)}
+  #city-card .cc-note{text-align:center;font-size:10px;color:var(--paper);margin-top:8px;letter-spacing:.06em}
+  #city-card .cc-x{position:absolute;top:12px;right:14px;background:none;border:0;font-size:18px;cursor:pointer;
+                   color:var(--paper);font-family:inherit}
+  @media (max-width:840px){
+    #city-card{top:auto;bottom:16px;right:16px;left:16px;width:auto}
+  }
+
+  /* ---------- sections ---------- */
+  .fx-confetti{position:fixed;inset:0;pointer-events:none;z-index:200;overflow:hidden}
+  .fx-confetti i{position:absolute;display:block;border-radius:3px}
   /* ---- soundtrack chip (official Spotify embed) ---- */
   .soundtrack{position:fixed;right:18px;bottom:18px;z-index:150;text-align:right}
   .soundtrack .pill{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#000;border:0;cursor:pointer;
@@ -203,8 +259,40 @@
     <h1><span>BRENDA</span><span>ARTS</span></h1>
     <div class="kick">Spencer Garland - Portland, Oregon</div>
   </div>
+  <aside class="game-card">
+    <div class="gk">✦ New: Counter of Sheep — World Traveler</div>
+    <p>A buddy you build with your own hands — who wakes up on your phone, takes you hunting for puzzle
+    pieces in real places, and introduces you to kids around the world.</p>
+    <a href="counter-of-sheep.html">Come on an adventure →</a>
+  </aside>
   <div class="sub">Sculpture · Animation<br/>Playable Worlds</div>
 </header>
+
+<section id="world" aria-label="The world hunt" style="padding-bottom:clamp(40px,5vw,70px)">
+  <div class="kicker"><b>The world hunt</b> — where in the world is my piece?</div>
+  <p style="max-width:62ch;margin:0 0 6px;font-size:13px;color:rgba(255,255,255,.72)">
+  Red pins mark chapter cities holding pieces of the island. Drag the globe. Tap a pin. Go find it.</p>
+<div class="globe-wrap">
+  <div id="globe" role="application" aria-label="Interactive globe of chapter cities. Drag to spin. Tap a red pin for city details.">
+    <div id="city-card" aria-live="polite">
+      <button class="cc-x" id="cc-x" type="button" aria-label="Close">×</button>
+      <div class="cc-kicker" id="cc-kicker">Chapter city</div>
+      <h2 id="cc-name">—</h2>
+      <div class="cc-country" id="cc-country">—</div>
+      <div class="cc-lang" id="cc-lang"></div>
+      <div class="cc-love"><div class="t">Kids here love</div><div id="cc-love"></div></div>
+      <div class="cc-buddy"><div class="t">Your buddy says</div><div id="cc-buddy"></div></div>
+      <a class="cc-cta" id="cc-cta" href="counter-of-sheep.html">Open the Counter of Sheep app</a>
+      <div class="cc-note">Pilot app launches with the Portland school pilot</div>
+    </div>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--red)"></i>Puzzle piece waiting</span>
+    <span><i style="background:var(--teal)"></i>Found by kids</span>
+  </div>
+  <div class="globe-hint">Drag to spin · Tap a red pin</div>
+</div>
+</section>
 
 <main id="main">
 
@@ -417,6 +505,286 @@ stBtn.addEventListener('click', () => {
   }
 });
 
+</script>
+<script type="importmap">
+{ "imports": {
+    "three": "/vendor/three/build/three.module.js",
+    "three/addons/": "/vendor/three/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const CITIES = [
+  { name:'Portland',       country:'United States', lat:45.52,  lon:-122.68, langs:'English', love:'Forest Park hikes, Powell\'s Books, Saturday Market, and rain that never quits.', buddy:'This is home base — our class started it all. Piece #001 sleeps at the workshop.' },
+  { name:'New York City',  country:'United States', lat:40.71,  lon:-74.01,  langs:'English · Español · 中文', love:'Staten Island ferries, subway performers, and the biggest brick buildings anywhere.', buddy:'A piece is hiding somewhere in a Brooklyn studio. Ask the printers.' },
+  { name:'Los Angeles',    country:'United States', lat:34.05,  lon:-118.24, langs:'English · Español · 한국어', love:'Murals a whole block long, taco trucks, and griffins at the park (the Observatory!).', buddy:'The movie people build worlds here. So do we.' },
+  { name:'Chicago',        country:'United States', lat:41.88,  lon:-87.63,  langs:'English · Español · Polski', love:'The "L" train rattles overhead, dinos at the Field Museum, and Lake Michigan like an ocean.', buddy:'A woodworker by the river holds a dovetail piece. You can hear the saw from the street.' },
+  { name:'Toronto',        country:'Canada',        lat:43.65,  lon:-79.38,  langs:'English · Français · 普通话', love:'An island park you take a boat to, and 140 languages spoken by its kids.', buddy:'The piece here is bilingual. So is everybody.' },
+  { name:'Mexico City',         country:'Mexico',        lat:19.43,  lon:-99.13,  langs:'Español', love:'Axolotls, marigold festivals, pyramid cities under the streets, and the best pan dulce on Earth.', buddy:'El carpintero del taller guarda una pieza. Huele a canela.' },
+  { name:'São Paulo',      country:'Brazil',        lat:-23.55, lon:-46.63,  langs:'Português', love:'Grafite taller than buildings, futevôlei at the park, and pastel on rainy days.', buddy:'Tem uma peça escondida num ateliê cheio de tinta. Vamos?' },
+  { name:'Buenos Aires',   country:'Argentina',     lat:-34.60, lon:-58.38,  langs:'Español', love:'Bookstores in old theaters, dominoes in the plazas, and murga drums that shake the street.', buddy:'Un dibujante tiene tu pieza. Traé sube.' },
+  { name:'London',         country:'United Kingdom',lat:51.51,  lon:-0.13,   langs:'English · Polski · Urdu', love:'Free world-class museums, foxes in the gardens, and a clock tower everybody checks.', buddy:'A piece sits behind a print shop door in Shoreditch. Mind the gap.' },
+  { name:'Berlin',         country:'Germany',       lat:52.52,  lon:13.40,   langs:'Deutsch · English · Türkçe', love:'Karaoke in the park, currywurst, bears painted on every corner, and a wall that\'s now a gallery.', buddy:'Ein Stück wartet in einer Werkstatt voller Licht. Es summt.' },
+  { name:'Paris',          country:'France',        lat:48.86,  lon:2.35,    langs:'Français', love:'Croissant missions, a tower that sparkles on the hour, and studio ateliers with the windows open.', buddy:'Une pièce t\'attend chez une relieuse. Apporte ton courage.' },
+  { name:'Lagos',          country:'Nigeria',       lat:6.52,   lon:3.38,    langs:'English · Yorùbá · Igbo', love:'Afrobeats from every window, jollof at the parties, and a city that NEVER sleeps.', buddy:'The drummer buddy comes from here. His piece is near the water.' },
+  { name:'Cape Town',     country:'South Africa',  lat:-33.92, lon:18.42,   langs:'English · isiXhosa · Afrikaans', love:'A flat mountain you can hike, penguins at the beach, and paint so bright it sings.', buddy:'There\'s a piece at the end of a street full of murals. Go say hi.' },
+  { name:'Cairo',         country:'Egypt',         lat:30.04,  lon:31.24,   langs:'العربية', love:'5,000-year-old neighbors, koshari for dinner, and a city where every corner has a story.', buddy:'قطعة تنتظرك في ورشةٍ مليئة بالورق والذهب. اذهب.' },
+  { name:'Nairobi',        country:'Kenya',        lat:-1.29,  lon:36.82,   langs:'English · Kiswahili', love:'Giraffes who eat from your hand, matatu buses painted like rockets, and runners everywhere at dawn.', buddy:'A beaded piece waits at a craft collective. It hums when you\'re close.' },
+  { name:'Tokyo',          country:'Japan',        lat:35.68,  lon:139.69,  langs:'日本語', love:'Ghibli heroes on screen, gachapon surprises, crosswalks like rivers of people, and custard pancakes.', buddy:'工作室に一個のピースが眠っている。ドアを叩いて。' },
+  { name:'Melbourne',      country:'Australia',    lat:-37.81, lon:144.96,  langs:'English', love:'Laneways full of paint, penguins marching at sunset, and coffee the grown-ups rave about.', buddy:'A piece hides down a graffiti alley. It likes the smell of espresso.' },
+];
+
+/* rough, charmingly blocky continents — [lon, lat] pairs, drawn onto the sphere texture */
+const LAND = [
+  /* North America */ [[-168,66],[-140,70],[-120,72],[-95,73],[-80,72],[-62,60],[-64,46],[-70,44],[-75,38],[-81,26],[-97,26],[-105,20],[-110,23],[-117,33],[-125,40],[-125,49],[-132,57],[-152,60],[-166,60],[-168,66]],
+  /* Greenland */ [[-45,60],[-22,70],[-18,80],[-40,83],[-58,76],[-55,66],[-45,60]],
+  /* South America */ [[-77,8],[-60,10],[-50,0],[-35,-6],[-39,-14],[-48,-26],[-53,-34],[-58,-39],[-65,-41],[-71,-46],[-69,-53],[-74,-50],[-73,-40],[-71,-30],[-70,-18],[-77,-12],[-81,-5],[-77,8]],
+  /* Africa */ [[-17,15],[-8,5],[9,4],[9,-1],[12,-6],[9,-17],[15,-29],[20,-35],[27,-34],[33,-27],[35,-18],[40,-11],[41,-2],[51,11],[43,12],[37,18],[33,28],[20,32],[10,34],[-6,35],[-17,21],[-17,15]],
+  /* Madagascar */ [[44,-25],[50,-16],[49,-12],[45,-16],[44,-25]],
+  /* Europe */ [[-9,37],[-6,44],[-2,48],[5,51],[8,54],[5,58],[12,56],[18,56],[21,60],[28,60],[30,66],[24,71],[18,69],[12,65],[8,63],[5,58],[0,52],[-2,48],[-9,43],[-9,37]],
+  /* UK+IE */ [[-10,52],[-6,55],[-3,59],[0,53],[-6,51],[-10,52]],
+  /* Asia (big rough) */ [[30,66],[42,68],[60,70],[80,73],[100,76],[130,72],[150,70],[160,66],[155,58],[142,53],[135,43],[127,39],[122,30],[110,20],[105,10],[103,1],[98,8],[95,17],[88,22],[80,15],[77,8],[72,20],[68,24],[66,30],[62,25],[57,25],[48,30],[44,38],[36,36],[27,40],[26,45],[30,50],[30,66]],
+  /* Japan */ [[130,31],[135,34],[140,36],[142,40],[145,43],[141,45],[138,37],[133,34],[130,31]],
+  /* SE Asia islands */ [[95,5],[103,-1],[106,-6],[112,-8],[118,-8],[116,-3],[105,1],[95,5]],
+  /* Sumatra/Java line */ [[95,5],[105,-6],[115,-8],[130,-8],[140,-8],[135,-4],[120,-2],[105,2],[95,5]],
+  /* Australia */ [[114,-22],[114,-34],[120,-34],[129,-32],[137,-35],[141,-38],[147,-38],[150,-35],[153,-28],[153,-25],[146,-19],[142,-11],[136,-12],[131,-12],[125,-14],[122,-18],[114,-22]],
+  /* New Zealand */ [[166,-46],[172,-41],[175,-37],[173,-34],[170,-42],[166,-46]],
+  /* New Guinea */ [[131,-1],[140,-2],[147,-6],[143,-8],[135,-4],[131,-1]],
+];
+
+/* ---------- texture ---------- */
+function makeGlobeTexture(){
+  const w = 2048, h = 1024;
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const x = c.getContext('2d');
+  const px = (lon, lat) => [ (lon + 180) / 360 * w, (90 - lat) / 180 * h ];
+
+  const g = x.createLinearGradient(0, 0, 0, h);
+  g.addColorStop(0, '#1e1e26'); g.addColorStop(.5, '#191921'); g.addColorStop(1, '#1e1e26');
+  x.fillStyle = g; x.fillRect(0, 0, w, h);
+
+  /* dotted ocean grid — the fun retro-board-game feel */
+  x.fillStyle = 'rgba(122,128,214,.16)';
+  for (let lat = -80; lat <= 80; lat += 10){
+    for (let lon = -180; lon < 180; lon += 10){
+      const [a, b] = px(lon, lat);
+      x.beginPath(); x.arc(a, b, 2.2, 0, 7); x.fill();
+    }
+  }
+
+  /* landmasses: warm paper with a soft speckle */
+  for (const poly of LAND){
+    x.beginPath();
+    poly.forEach(([lon, lat], i) => { const [a, b] = px(lon, lat); i ? x.lineTo(a, b) : x.moveTo(a, b); });
+    x.closePath();
+    x.fillStyle = '#f4ecd8'; x.fill();
+    x.strokeStyle = '#facc15'; x.lineWidth = 5; x.stroke();
+  }
+  /* sprinkle speckles on land only (clip to land) */
+  x.save();
+  for (const poly of LAND){
+    x.beginPath();
+    poly.forEach(([lon, lat], i) => { const [a, b] = px(lon, lat); i ? x.lineTo(a, b) : x.moveTo(a, b); });
+    x.closePath(); x.clip();
+  }
+  x.fillStyle = 'rgba(202,138,4,.5)';
+  for (let i = 0; i < 1400; i++){
+    const a = Math.random() * w, b = Math.random() * h;
+    x.beginPath(); x.arc(a, b, Math.random() * 2.4 + .6, 0, 7); x.fill();
+  }
+  x.restore();
+
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+
+/* ---------- scene ---------- */
+const el = document.getElementById('globe');
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(el.clientWidth, el.clientHeight);
+el.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(38, el.clientWidth / el.clientHeight, .1, 100);
+camera.position.set(0, 0.6, 7.2);
+
+scene.add(new THREE.AmbientLight(0xffffff, 1.1));
+const key = new THREE.DirectionalLight(0xfff3c7, 1.6); key.position.set(4, 3, 5); scene.add(key);
+const rim = new THREE.DirectionalLight(0x7a80d6, 1.2); rim.position.set(-5, -2, -4); scene.add(rim);
+
+const world = new THREE.Group(); scene.add(world);
+const R = 2.6;
+
+const globe = new THREE.Mesh(
+  new THREE.SphereGeometry(R, 64, 48),
+  new THREE.MeshStandardMaterial({ map: makeGlobeTexture(), roughness: .92, metalness: 0 })
+);
+world.add(globe);
+
+/* glow atmosphere */
+world.add(new THREE.Mesh(
+  new THREE.SphereGeometry(R * 1.04, 48, 36),
+  new THREE.MeshBasicMaterial({ color: 0x5b63ba, transparent: true, opacity: .10, side: THREE.BackSide })
+));
+
+/* sparkle ring — hologram confetti in purple + gold */
+const sparkles = new THREE.Group(); world.add(sparkles);
+const sparkGeo = new THREE.OctahedronGeometry(.045);
+const sparkMats = [new THREE.MeshBasicMaterial({ color: 0x9aa0ff }), new THREE.MeshBasicMaterial({ color: 0xfacc15 }), new THREE.MeshBasicMaterial({ color: 0xdb2777 })];
+for (let i = 0; i < 90; i++){
+  const m = new THREE.Mesh(sparkGeo, sparkMats[i % 3]);
+  const a = Math.random() * Math.PI * 2, b = Math.acos(Math.random() * 2 - 1);
+  const r = R * (1.12 + Math.random() * .28);
+  m.position.set(r * Math.sin(b) * Math.cos(a), r * Math.cos(b), r * Math.sin(b) * Math.sin(a));
+  m.userData.spin = .4 + Math.random();
+  sparkles.add(m);
+}
+
+/* pins: red pushpin with a white belly dot + invisible fat hit target */
+const pins = [];
+const pinGroup = new THREE.Group(); world.add(pinGroup);
+
+/* puzzle-piece top: a tile with a jigsaw tab, like the island's map pieces */
+function puzzleGeometry(){
+  const w = .20, h = .15;
+  const sh = new THREE.Shape();
+  sh.moveTo(-w/2, -h/2);
+  sh.lineTo(w/2, -h/2);
+  sh.lineTo(w/2, h/2);
+  sh.lineTo(.05, h/2);
+  sh.absarc(0, h/2, .05, 0, Math.PI, false);
+  sh.lineTo(-w/2, h/2);
+  sh.lineTo(-w/2, -h/2);
+  sh.closePath();
+  return new THREE.ExtrudeGeometry(sh, { depth: .045, bevelEnabled: true,
+    bevelThickness: .012, bevelSize: .012, bevelSegments: 2 });
+}
+function addPin(city){
+  const g = new THREE.Group();
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(.014, .014, .13, 8),
+    new THREE.MeshStandardMaterial({ color: 0x232326, roughness: .5 }));
+  stem.position.y = .065;
+  const head = new THREE.Mesh(puzzleGeometry(),
+    new THREE.MeshStandardMaterial({ color: 0xe03131, roughness: .38 }));
+  head.position.y = .155; head.rotation.x = -Math.PI / 2; head.scale.setScalar(1.25);
+  const hit = new THREE.Mesh(new THREE.SphereGeometry(.22, 8, 8),
+    new THREE.MeshBasicMaterial({ visible: false }));
+  hit.position.y = .12;
+  g.add(stem, head, hit);
+
+  const lat = city.lat * Math.PI / 180, lon = city.lon * Math.PI / 180;
+  const v = new THREE.Vector3(
+    R * Math.cos(lat) * Math.cos(lon),
+    R * Math.sin(lat),
+    -R * Math.cos(lat) * Math.sin(lon)
+  );
+  g.position.copy(v);
+  g.lookAt(v.clone().multiplyScalar(2));
+  g.rotateX(Math.PI / 2);
+  hit.userData.city = city;
+  pinGroup.add(g);
+  pins.push({ group: g, head, city, hit });
+}
+CITIES.forEach(addPin);
+
+window.__world = { scene, camera, renderer, world, pins, openCard };
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = .06;
+controls.enablePan = false;
+controls.minDistance = 4.2; controls.maxDistance = 12;
+controls.autoRotate = true; controls.autoRotateSpeed = .5;
+renderer.domElement.addEventListener('pointerdown', () => { controls.autoRotate = false; el.classList.add('grabbing'); });
+addEventListener('pointerup', () => el.classList.remove('grabbing'));
+
+/* raycast hover + click */
+const ray = new THREE.Raycaster();
+const ptr = new THREE.Vector2(-9, -9);
+let hovered = null;
+function setPtr(e){
+  const r = renderer.domElement.getBoundingClientRect();
+  ptr.x = ((e.clientX - r.left) / r.width) * 2 - 1;
+  ptr.y = -((e.clientY - r.top) / r.height) * 2 + 1;
+}
+renderer.domElement.addEventListener('pointermove', setPtr);
+renderer.domElement.addEventListener('click', (e) => {
+  setPtr(e);
+  ray.setFromCamera(ptr, camera);
+  const hits = ray.intersectObjects(pins.map(p => p.hit));
+  if (hits.length) openCard(hits[0].object.userData.city);
+});
+
+const card = document.getElementById('city-card');
+function openCard(city){
+  document.getElementById('cc-name').textContent = city.name;
+  document.getElementById('cc-country').textContent = city.country;
+  document.getElementById('cc-lang').innerHTML = '<b>Spoken here:</b> ' + city.langs;
+  document.getElementById('cc-love').textContent = city.love;
+  document.getElementById('cc-buddy').textContent = '"' + city.buddy + '"';
+  card.classList.add('open');
+}
+document.getElementById('cc-x').addEventListener('click', () => card.classList.remove('open'));
+
+/* resize */
+function resize(){
+  const w = el.clientWidth, h = el.clientHeight;
+  renderer.setSize(w, h);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+addEventListener('resize', resize);
+
+/* animate */
+const clock = new THREE.Clock();
+function tick(){
+  requestAnimationFrame(tick);
+  const t = clock.getElapsedTime();
+  sparkles.children.forEach((m, i) => {
+    m.rotation.x = t * m.userData.spin; m.rotation.y = t * m.userData.spin * .7;
+  });
+  pins.forEach((p, i) => {
+    const hot = p === hovered;
+    const s = hot ? 1.35 + Math.sin(t * 6) * .08 : 1;
+    p.head.scale.setScalar(s);
+  });
+  controls.update();
+  renderer.render(scene, camera);
+}
+function hoverCheck(){
+  ray.setFromCamera(ptr, camera);
+  const hits = ray.intersectObjects(pins.map(p => p.hit));
+  hovered = hits.length ? pins.find(p => p.hit === hits[0].object) : null;
+  renderer.domElement.style.cursor = hovered ? 'pointer' : '';
+}
+setInterval(hoverCheck, 90);
+tick();
+</script>
+<script>
+/* fun layer: confetti over every page */
+(function(){
+  const box = document.createElement('div');
+  box.className = 'fx-confetti'; box.setAttribute('aria-hidden','true');
+  document.body.appendChild(box);
+  const colors = ['#facc15','#5b63ba','#db2777','#2563eb','#0f9d6d','#e03131'];
+  for (let i = 0; i < 30; i++){
+    const c = document.createElement('i');
+    const sz = 4 + Math.random() * 7;
+    c.style.width = sz + 'px'; c.style.height = sz * .7 + 'px';
+    c.style.left = Math.random() * 100 + '%';
+    c.style.top = '-16px';
+    c.style.background = colors[i % colors.length];
+    c.style.opacity = .18 + Math.random() * .22;
+    const rot = Math.random() * 90;
+    const dur = 9 + Math.random() * 11;
+    c.animate(
+      [{ transform: 'rotate(' + rot + 'deg) translateY(0)' },
+       { transform: 'rotate(' + rot + 'deg) translateY(' + (innerHeight + 60) + 'px)' }],
+      { duration: dur * 1000, delay: -Math.random() * dur * 1000, iterations: Infinity, easing: 'linear' });
+    box.appendChild(c);
+  }
+})();
 </script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='8' width='28' height='22' rx='4' fill='%23facc15' stroke='%23232326' stroke-width='3'/%3E%3Cpath d='M12 8v-2a4 4 0 1 1 8 0v2' fill='%23e03131' stroke='%23232326' stroke-width='3'/%3E%3C/svg%3E" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Counter of Sheep — model</title>
@@ -48,6 +49,8 @@
   .msg .d{font-size:14px;color:var(--paper3);max-width:44ch}
   .msg.hide{display:none}
   @media (max-width:600px){ .hud{display:none} .title{font-size:15px} }
+.fx-confetti{position:fixed;inset:0;pointer-events:none;z-index:200;overflow:hidden}
+.fX i,.fx-confetti i{position:absolute;display:block;border-radius:3px}
 </style>
 </head>
 <body>
@@ -281,6 +284,31 @@ resize();
   if (spinning && mesh) mesh.rotation.z += 0.0045;
   controls.update();
   renderer.render(scene, camera);
+})();
+</script>
+<script>
+/* fun layer: confetti over every page */
+(function(){
+  const box = document.createElement('div');
+  box.className = 'fx-confetti'; box.setAttribute('aria-hidden','true');
+  document.body.appendChild(box);
+  const colors = ['#facc15','#5b63ba','#db2777','#2563eb','#0f9d6d','#e03131'];
+  for (let i = 0; i < 30; i++){
+    const c = document.createElement('i');
+    const sz = 4 + Math.random() * 7;
+    c.style.width = sz + 'px'; c.style.height = sz * .7 + 'px';
+    c.style.left = Math.random() * 100 + '%';
+    c.style.top = '-16px';
+    c.style.background = colors[i % colors.length];
+    c.style.opacity = .18 + Math.random() * .22;
+    const rot = Math.random() * 90;
+    const dur = 9 + Math.random() * 11;
+    c.animate(
+      [{ transform: 'rotate(' + rot + 'deg) translateY(0)' },
+       { transform: 'rotate(' + rot + 'deg) translateY(' + (innerHeight + 60) + 'px)' }],
+      { duration: dur * 1000, delay: -Math.random() * dur * 1000, iterations: Infinity, easing: 'linear' });
+    box.appendChild(c);
+  }
 })();
 </script>
 </body>

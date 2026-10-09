@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='8' width='28' height='22' rx='4' fill='%23facc15' stroke='%23232326' stroke-width='3'/%3E%3Cpath d='M12 8v-2a4 4 0 1 1 8 0v2' fill='%23e03131' stroke='%23232326' stroke-width='3'/%3E%3C/svg%3E" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Counter of Sheep: World Traveler — the presentation</title>
+<meta name="description" content="Counter of Sheep: World Traveler — a buddy you build, who wakes up on your phone and takes you on adventures around the world. The full presentation." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Roboto+Mono:wght@300;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#faf9f6; --cream:#fffdf7; --ink:#232326; --ink2:#55565c; --soft:#9b9ca3;
+    --purple:#5b63ba; --purple-soft:#e8e9f7; --blue:#2563eb; --blue-soft:#e0edff;
+    --yellow:#facc15; --yellow-soft:#fef3c7; --gold:#ca8a04;
+    --pink:#db2777; --pink-soft:#fde7f2; --teal:#0f9d6d; --teal-soft:#e2f6ee;
+    --red:#e03131; --red-soft:#fde8e8; --line:#e9e7e0;
+    --pad:clamp(20px,5vw,72px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);
+       font-family:"Roboto Mono",ui-monospace,monospace;font-weight:300;line-height:1.65;
+       -webkit-font-smoothing:antialiased}
+  ::selection{background:var(--yellow);color:var(--ink)}
+  a{color:inherit}
+  h1,h2,h3,.display{font-family:"Fredoka","Roboto Mono",sans-serif;font-weight:600;letter-spacing:.01em}
+
+  .skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;z-index:99;background:#fff;padding:8px}
+
+  /* ---------- fun header ---------- */
+  header.top{position:relative;overflow:hidden;
+    background:linear-gradient(135deg,rgba(168,85,247,.38) 0%,rgba(37,99,235,.32) 45%,rgba(255,221,0,.42) 100%);
+    padding:calc(60px + clamp(24px,5vw,60px)) var(--pad) clamp(30px,5vw,56px);border-bottom:4px solid var(--ink)}
+  header.top .confetti{position:absolute;inset:0;pointer-events:none;opacity:.85}
+  .head-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:clamp(20px,4vw,60px);align-items:center;position:relative;z-index:2}
+  @media (max-width:900px){ .head-grid{grid-template-columns:1fr} }
+  .globe-logo{position:relative;text-align:center;cursor:pointer;user-select:none}
+  .globe-logo canvas{width:min(300px,64vw);height:min(300px,64vw);border-radius:50%;
+    border:3px solid var(--ink);box-shadow:7px 7px 0 var(--yellow);background:radial-gradient(120% 120% at 30% 20%,#23233a 0%,#16161c 60%,#101014 100%);
+    transition:transform .15s ease,box-shadow .15s ease}
+  .globe-logo:hover canvas{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--yellow)}
+  .globe-logo .cap{display:inline-block;margin-top:14px;font-family:"Fredoka",sans-serif;font-weight:600;font-size:15px;
+    background:var(--yellow);border:2.5px solid var(--ink);border-radius:999px;padding:8px 18px;
+    box-shadow:3px 3px 0 var(--ink);animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  header.top .confetti i{position:absolute;display:block;border-radius:3px}
+  .kicker{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+          background:var(--ink);color:var(--yellow);padding:6px 12px;border-radius:999px}
+  header.top h1{font-size:clamp(30px,5.4vw,66px);line-height:1.03;margin-top:16px;max-width:20ch}
+  header.top h1 .wt{color:var(--purple)}
+  .short{margin-top:18px;max-width:66ch;font-size:14.5px;color:var(--ink)}
+  .short b{font-weight:700}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+  .btn{display:inline-block;font-family:"Fredoka",sans-serif;font-weight:600;font-size:15px;
+       padding:12px 22px;border-radius:999px;text-decoration:none;border:3px solid var(--ink);
+       box-shadow:4px 4px 0 var(--ink);transition:transform .12s ease,box-shadow .12s ease}
+  .btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+  .btn.primary{background:var(--yellow)}
+  .btn.second{background:#fff}
+  .btn.ghost{background:var(--purple);color:#fff;box-shadow:4px 4px 0 var(--purple)}
+  .btn.ghost:hover{box-shadow:2px 2px 0 var(--purple)}
+
+  /* ---------- TOC ---------- */
+  .toc{padding:clamp(28px,4vw,48px) var(--pad);border-bottom:3px solid var(--ink);background:var(--cream)}
+  .toc h2{font-size:15px;text-transform:uppercase;letter-spacing:.18em;color:var(--ink2);margin-bottom:16px;font-family:"Roboto Mono",monospace;font-weight:700}
+  .toc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .toc a{text-decoration:none;display:flex;gap:10px;align-items:center;background:#fff;border:2.5px solid var(--ink);
+         border-radius:14px;padding:12px 14px;font-size:12.5px;font-weight:500;line-height:1.35;
+         box-shadow:3px 3px 0 rgba(35,35,38,.9);transition:transform .1s}
+  .toc a:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 rgba(35,35,38,.9)}
+  .toc a b{font-family:"Fredoka",sans-serif;font-weight:700;font-size:15px;flex:none}
+  .toc a:nth-child(4n+1) b{color:var(--purple)} .toc a:nth-child(4n+2) b{color:var(--pink)}
+  .toc a:nth-child(4n+3) b{color:var(--blue)} .toc a:nth-child(4n+4) b{color:var(--teal)}
+  @media (max-width:900px){ .toc-grid{grid-template-columns:1fr 1fr} }
+  @media (max-width:540px){ .toc-grid{grid-template-columns:1fr} }
+
+  /* ---------- sections ---------- */
+  section{padding:clamp(36px,5.5vw,68px) var(--pad);border-bottom:3px solid var(--ink);position:relative}
+  section.tint-purple{background:rgba(168,85,247,.34)} section.tint-blue{background:rgba(37,99,235,.30)}
+  section.tint-yellow{background:rgba(255,221,0,.42)} section.tint-pink{background:rgba(244,63,148,.26)}
+  section.tint-teal{background:rgba(16,200,90,.26)} section.tint-red{background:rgba(245,63,63,.24)}
+  .sec-kick{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+            background:#fff;border:2px solid var(--ink);border-radius:999px;padding:4px 12px;margin-bottom:14px}
+  h2.sec{font-size:clamp(24px,3.6vw,42px);line-height:1.08;max-width:26ch}
+  .lead{margin-top:12px;max-width:70ch;font-size:14px;color:var(--ink)}
+  .lead b{font-weight:700}
+  .note{font-size:11px;color:var(--soft);margin-top:8px;letter-spacing:.02em}
+  .cite{display:block;font-size:10.5px;color:var(--ink2);margin-top:6px;line-height:1.5}
+  .cite b{font-weight:500;color:var(--ink)}
+
+  /* journey */
+  .journey{margin-top:26px;display:flex;flex-direction:column;gap:14px;max-width:860px}
+  .step{display:flex;gap:16px;background:#fff;border:3px solid var(--ink);border-radius:18px;padding:16px 18px;
+        box-shadow:5px 5px 0 rgba(35,35,38,.9);align-items:flex-start}
+  .step .n{flex:none;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+           font-family:"Fredoka",sans-serif;font-weight:700;font-size:18px;border:3px solid var(--ink);background:var(--yellow)}
+  .step:nth-child(3n+2) .n{background:var(--purple);color:#fff}
+  .step:nth-child(3n) .n{background:var(--pink);color:#fff}
+  .step b.t{font-family:"Fredoka",sans-serif;font-weight:600;font-size:16.5px;display:block}
+  .step p{font-size:13px;margin-top:3px;color:var(--ink)}
+  .step .quote{display:inline-block;margin-top:8px;background:var(--yellow-soft);border-radius:10px;padding:6px 10px;
+               font-size:12px;font-weight:500}
+  .step:nth-child(3n+2) .quote{background:var(--purple-soft)} .step:nth-child(3n) .quote{background:var(--pink-soft)}
+
+  /* generic card grids */
+  .grid{display:grid;gap:14px;margin-top:26px}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+  @media (max-width:900px){ .g3,.g4{grid-template-columns:1fr 1fr} }
+  @media (max-width:560px){ .g2,.g3,.g4{grid-template-columns:1fr} }
+  .card{background:#fff;border:3px solid var(--ink);border-radius:16px;padding:18px;box-shadow:4px 4px 0 rgba(35,35,38,.85)}
+  .card .emo{font-size:24px}
+  .card b.t{font-family:"Fredoka",sans-serif;font-weight:600;font-size:15.5px;display:block;margin-top:6px}
+  .card p{font-size:12.5px;color:var(--ink);margin-top:6px}
+  .card.cited{box-shadow:4px 4px 0 var(--purple)}
+
+  /* cast */
+  .cast{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:26px}
+  .char{background:#fff;border:3px solid var(--ink);border-radius:18px;padding:16px 10px;text-align:center;
+        box-shadow:4px 4px 0 rgba(35,35,38,.85)}
+  .char .blob{width:56px;height:56px;border-radius:16px;margin:0 auto 10px;position:relative;border:3px solid var(--ink)}
+  .char .blob i{position:absolute;top:32%;width:9px;height:11px;border-radius:50%;background:#fff;border:2px solid var(--ink)}
+  .char .blob i.l{left:26%}.char .blob i.r{right:26%}
+  .char .blob.hat::after{content:"";position:absolute;left:50%;top:-13px;transform:translateX(-50%);width:0;height:0;
+    border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:14px solid var(--yellow)}
+  .char b{font-family:"Fredoka",sans-serif;font-weight:600;font-size:14px;display:block}
+  .char span{display:block;font-size:10.5px;color:var(--ink2);margin-top:4px;line-height:1.45}
+  @media (max-width:900px){ .cast{grid-template-columns:repeat(2,1fr)} .char:last-child{grid-column:1/-1} }
+
+  /* newsflash */
+  .newsflash{margin-top:26px;max-width:640px;background:var(--ink);color:#fff;border-radius:20px;overflow:hidden;
+             border:3px solid var(--ink);box-shadow:6px 6px 0 var(--yellow)}
+  .newsflash .bar{display:flex;justify-content:space-between;align-items:center;background:var(--red);color:#fff;
+                  padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+  .newsflash .bar .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#fff;margin-right:8px;
+                       animation:blink 1.2s infinite}
+  @keyframes blink{50%{opacity:.25}}
+  .newsflash .body{padding:18px}
+  .newsflash .body h3{font-size:18px;color:var(--yellow)}
+  .newsflash .body p{font-size:13px;margin-top:8px;color:rgba(255,255,255,.88)}
+  .newsflash .body .did{margin-top:14px;background:rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;font-size:13px}
+  .newsflash .body .did b{color:var(--yellow);font-weight:500}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+  .stat{background:#fff;border:3px solid var(--ink);border-radius:18px;padding:20px 16px;text-align:center;
+        box-shadow:5px 5px 0 rgba(35,35,38,.9)}
+  .stat .num{font-family:"Fredoka",sans-serif;font-weight:700;font-size:clamp(26px,3.4vw,44px);line-height:1}
+  .stat:nth-child(1) .num{color:var(--purple)} .stat:nth-child(2) .num{color:var(--pink)}
+  .stat:nth-child(3) .num{color:var(--blue)} .stat:nth-child(4) .num{color:var(--teal)}
+  .stat p{font-size:11.5px;color:var(--ink2);margin-top:8px;line-height:1.5}
+  @media (max-width:900px){ .stats{grid-template-columns:1fr 1fr} }
+
+  /* table */
+  table{width:100%;border-collapse:collapse;margin-top:24px;background:#fff;border:3px solid var(--ink);
+        border-radius:16px;overflow:hidden;font-size:12.5px}
+  th{font-family:"Fredoka",sans-serif;font-weight:600;text-align:left;background:var(--ink);color:var(--yellow);
+     padding:12px 14px;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  td{padding:12px 14px;border-top:2px solid var(--line);vertical-align:top}
+  td:first-child{font-weight:500}
+
+  footer{padding:34px var(--pad);background:var(--ink);color:rgba(255,255,255,.85);
+         display:flex;flex-wrap:wrap;gap:12px 28px;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+  footer a{color:var(--yellow);text-decoration:none}
+  footer .r{margin-left:auto;color:rgba(255,255,255,.5)}
+  @media (max-width:700px){ footer .r{margin-left:0} }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+<div class="head-grid">
+  <div>
+    <span class="kicker">The presentation · preview for Spencer</span>
+    <h1 class="display">COUNTER OF SHEEP:<br/><span class="wt">WORLD TRAVELER</span></h1>
+    <p class="short"><b>The short version:</b> a kid builds a buddy with their own hands — dovetail puzzle pieces,
+    no glue, no tools. The buddy <b>wakes up on their phone</b>, talks with them, knows its history, and takes them
+    on real adventures — hunting puzzle pieces hidden at creative places around the world, meeting kids in other
+    countries, collecting the story of Black history along the way. <b>Comfort first. The education rides along
+    inside the friendship.</b></p>
+    <div class="cta-row">
+      <a class="btn primary" href="#journey">Start with the journey ↓</a>
+      <a class="btn ghost" href="#benefits">Show me the science</a>
+    </div>
+  </div>
+  <div class="globe-logo" id="globe-logo" role="link" tabindex="0" aria-label="Click for your adventure — open the world globe">
+    <canvas id="mini-globe"></canvas>
+    <div class="cap">Click me — your adventure starts here</div>
+  </div>
+</div>
+</header>
+
+<nav class="toc" aria-label="Contents">
+  <h2>What's inside</h2>
+  <div class="toc-grid">
+    <a href="#journey"><b>1</b> The journey, end to end</a>
+    <a href="#build"><b>2</b> The build — the dovetail system</a>
+    <a href="#companion"><b>3</b> The companion — comfort, then teaching</a>
+    <a href="#cast"><b>4</b> The cast</a>
+    <a href="#newsflash"><b>5</b> The monthly newsflash</a>
+    <a href="#hunt"><b>6</b> The hunt — CreativeMornings world</a>
+    <a href="#penpals"><b>7</b> Pen pals &amp; the translator</a>
+    <a href="#twelve"><b>8</b> The Twelve — history buddies</a>
+    <a href="#benefits"><b>9</b> The benefits — cited</a>
+    <a href="#line"><b>10</b> The line — plush &amp; merch</a>
+    <a href="#team"><b>11</b> The team — vertical integration</a>
+    <a href="#market"><b>12</b> Market — why the majors care</a>
+    <a href="#roadmap"><b>13</b> Roadmap — first 90 days</a>
+    <a href="#citations"><b>14</b> Citations &amp; sources</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<section id="journey">
+  <span class="sec-kick" style="color:var(--purple)">1 · The journey</span>
+  <h2 class="sec">Exactly what happens, end to end</h2>
+  <p class="lead">From the moment the pack arrives to the moment a kid in another country becomes a friend.
+  This is the whole product, in order.</p>
+  <div class="journey">
+    <div class="step"><span class="n">1</span><div><b class="t">The pack arrives — and they know what's coming</b>
+      <p>Excitement first. The Counter of Sheep puzzle pack lands in their hands with its cast of characters on the box,
+      and the kid already knows the promise that comes with it:</p>
+      <span class="quote">"I get to explore, visit, and understand different cultures in different countries — with other kids."</span></div></div>
+    <div class="step"><span class="n">2</span><div><b class="t">They build their buddy at home, on their map</b>
+      <p>Dovetail pieces slide together — no glue, no tools, the shape is the instruction. The pieces are theirs to move
+      around the map table, rearrange, take apart, rebuild. The buddy goes together the same way the world does:
+      by hand.</p></div></div>
+    <div class="step"><span class="n">3</span><div><b class="t">The buddy wakes up on the phone</b>
+      <p>The app opens — no download needed at school or home — and the buddy they just built is <b>there</b>, alive.
+      They talk: about art, about creative stuff, about music. The buddy listens, remembers, and answers in character.</p></div></div>
+    <div class="step"><span class="n">4</span><div><b class="t">BEEP — a newsflash!</b>
+      <p>Once a month, new characters ship — and the app announces them like breaking news. Every newsflash carries a
+      "Did you know?" from history that makes a kid want to run and tell somebody.</p>
+      <span class="quote">See the newsflash below ↓</span></div></div>
+    <div class="step"><span class="n">5</span><div><b class="t">They look at the world map — who's out there?</b>
+      <p>The map lights up with chapter cities. "CreativeMornings… what's this all about?" Their buddy explains:
+      makers, in 170+ cities, holding pieces of their island. The hunt is on.</p></div></div>
+    <div class="step"><span class="n">6</span><div><b class="t">The hunt — out of the house, into the world</b>
+      <p>Kid and grown-up go together — a workshop, a studio, a chapter breakfast. They find the piece, scan it,
+      and it <b>wakes up and joins their island</b>. The find gets posted; kids in other cities see it and go hunting.</p></div></div>
+    <div class="step"><span class="n">7</span><div><b class="t">Pen pals — friends in other countries</b>
+      <p>Through the app, kids start writing to kids who found pieces in Lagos, Berlin, Mexico City. The buddy translates
+      everything live — every message in both kids' languages. Different countries, different cultures, one island
+      being built by all of them.</p></div></div>
+    <div class="step"><span class="n">8</span><div><b class="t">And it keeps going</b>
+      <p>New characters monthly. New cities joining. The Twelve history buddies unlocking one story at a time.
+      The island never stops growing — and neither does the kid.</p></div></div>
+  </div>
+</section>
+
+<section id="build" class="tint-purple">
+  <span class="sec-kick">2 · The build</span>
+  <h2 class="sec">A joint you can feel, a language every piece speaks</h2>
+  <p class="lead"><b>Tapered sliding dovetail</b> — pieces slide together and tighten as they seat; the last millimeter
+  ends in a satisfying lock. <b>Self-fixturing:</b> the joint aligns itself, a piece only goes together the correct way.
+  <b>Positive mechanical lock:</b> geometry holds it, not glue — infinitely rebuildable. And a <b>universal interface</b>:
+  one dovetail profile across the entire line, so any piece from any city clips to any other. FDM printing now;
+  injection molding, vacuum forming, and laser cutting in-house as volume grows.</p>
+  <div class="note">Mattel quoted ~$100,000 to start a comparable program. That's what capability costs when you rent it. This team owns it.</div>
+</section>
+
+<section id="companion">
+  <span class="sec-kick" style="color:var(--pink)">3 · The companion</span>
+  <h2 class="sec">Comfort first. The teaching rides along.</h2>
+  <p class="lead">The buddy is <b>a comfort and support guy</b> — like having a friend who takes you on adventures —
+  that happens to educate. The science backs the ordering: children's comfort objects measurably reduce distress
+  in new situations and function like a trusted presence; shared play lowers parents' stress while improving child
+  outcomes. The education isn't a lesson attached to a toy — it's a friendship the kid keeps.</p>
+  <div class="grid g3">
+    <div class="card cited"><span class="emo">🧸</span><b class="t">A comfort object, built by the kid</b>
+      <p>Classic research: attachments to comfort objects are normal and healthy, and help children cope in novel situations.</p>
+      <span class="cite"><b>Passman 1987</b>, J. Consulting &amp; Clinical Psychology; roots in Winnicott 1953.</span></div>
+    <div class="card cited"><span class="emo">💛</span><b class="t">Play that lowers parents' stress too</b>
+      <p>A randomized trial: programs promoting shared parent-child play improved child behavior partly by reducing parenting stress.</p>
+      <span class="cite"><b>Weisleder et al. 2019</b>, J. Pediatrics (RCT, N=362).</span></div>
+    <div class="card cited"><span class="emo">🗣</span><b class="t">It talks — and never phones home</b>
+      <p>The conversational engine is engineered in-house and runs local-first: children's data stays on the family
+      device. COPPA-aware by construction.</p>
+      <span class="cite"><b>FTC COPPA Rule</b>, 16 C.F.R. Part 312 (under-13 data protections).</span></div>
+  </div>
+</section>
+
+<section id="cast" class="tint-yellow">
+  <span class="sec-kick">4 · The cast</span>
+  <h2 class="sec">Characters that already exist</h2>
+  <p class="lead">The island's AR library already carries Spencer's creatures. Every buddy is a Spencer Garland original;
+  kids edit the remixes in the app — swap ears, hats, colors — and their versions post to the world feed.</p>
+  <div class="cast">
+    <div class="char"><div class="blob" style="background:var(--ink)"><i class="l"></i><i class="r"></i></div><b>Blocky</b><span>The big black blocky dude from the AR table. First friend.</span></div>
+    <div class="char"><div class="blob hat" style="background:var(--purple)"><i class="l"></i><i class="r"></i></div><b>Wizard</b><span>Canon since the exhibition plush. Keeper of pieces.</span></div>
+    <div class="char"><div class="blob" style="background:var(--teal)"><i class="l"></i><i class="r"></i></div><b>Drummer</b><span>Keeps the beat when you tap his foot. From Lagos.</span></div>
+    <div class="char"><div class="blob" style="background:var(--pink)"><i class="l"></i><i class="r"></i></div><b>Abra</b><span>The architect. Rebuilds the burned world, piece by piece.</span></div>
+    <div class="char"><div class="blob" style="background:var(--blue)"><i class="l"></i><i class="r"></i></div><b>+ You</b><span>Every character Spencer designs next. The library grows.</span></div>
+  </div>
+</section>
+
+<section id="newsflash" class="tint-red">
+  <span class="sec-kick" style="color:var(--red)">5 · The monthly newsflash</span>
+  <h2 class="sec">New characters ship. The news breaks.</h2>
+  <p class="lead">Once a month the app <b>beeps like a newsflash</b>: new characters have shipped, and every alert carries
+  a "Did you know?" from history — intriguing, true, and tell-somebody good.</p>
+  <div class="newsflash">
+    <div class="bar"><span><span class="dot"></span>BUDDY NEWSFLASH</span><span>MONTHLY</span></div>
+    <div class="body">
+      <h3>🚨 NEW BUDDIES HAVE LANDED!</h3>
+      <p>The Drummer is here — straight from Lagos. Build his kit, wake him up, and he'll keep the beat while you
+      hunt. Two more buddies land in 30 days.</p>
+      <div class="did">💡 <b>Did you know?</b> Before the first American flew around the Earth, John Glenn said the
+      numbers weren't good until <b>Katherine Johnson</b> checked them by hand. She checked. He flew.</div>
+    </div>
+  </div>
+</section>
+
+<section id="hunt" class="tint-blue">
+  <span class="sec-kick" style="color:var(--blue)">6 · The hunt</span>
+  <h2 class="sec">170+ cities are holding pieces of the island</h2>
+  <p class="lead">CreativeMornings — the global creative-breakfast network, 60+ countries — is a warm network, not a cold
+  one: <b>Spencer is a CreativeMornings Portland speaker.</b> Chapters, studios, and makers host dovetail pieces;
+  the buddy sends the kid; the family visits a real creative place; the piece wakes up and joins the island;
+  the find posts to the world feed. The phone is the door — <b>not the room</b>.</p>
+  <div class="grid g3">
+    <div class="card cited"><span class="emo">🌳</span><b class="t">Out of the house, into green and street</b>
+      <p>A 20-minute park walk measurably improved concentration in children with attention deficits; greener school
+      surroundings tracked with better working memory in 2,600 schoolchildren.</p>
+      <span class="cite"><b>Faber Taylor &amp; Kuo 2009</b>, J. Attention Disorders; <b>Dadvand et al. 2015</b>, PNAS.</span></div>
+    <div class="card cited"><span class="emo">🎨</span><b class="t">First hellos to the creative world</b>
+      <p>Real workshops and studios — the kind of rooms kids from these neighborhoods are rarely invited into.</p>
+      <span class="cite">CreativeMornings: 170+ hosted chapters, 60+ countries (creativemornings.com, Oct 2026).</span></div>
+    <div class="card"><span class="emo">🗺</span><b class="t">See it live</b>
+      <p>The interactive globe with the chapter cities and the puzzle pins is already built — spin it.</p>
+      <a class="btn second" style="margin-top:10px" href="world.html">Open the globe →</a></div>
+  </div>
+</section>
+
+<section id="penpals">
+  <span class="sec-kick" style="color:var(--teal)">7 · Pen pals</span>
+  <h2 class="sec">A friend on every continent</h2>
+  <p class="lead">Kids write to kids. The all-engineered, local-first <b>translator carries every message in both
+  languages</b> — nobody needs English to have a friend in Berlin, Lagos, or Mexico City. And the research says the
+  ages matter: this is precisely the developmental window when contact across groups shapes who kids become.</p>
+  <div class="grid g2">
+    <div class="card cited"><span class="emo">🤝</span><b class="t">Contact builds openness — measured in our exact age group</b>
+      <p>A randomized trial with 983 students in grades 3–5: contact-based programs increased positive expectations
+      about playing with diverse peers and reduced social exclusion.</p>
+      <span class="cite"><b>Killen et al. 2024</b>, Peace &amp; Conflict (RCT, mean age 9.6).</span></div>
+    <div class="card cited"><span class="emo">⏰</span><b class="t">The window is now</b>
+      <p>Meta-analysis across nations: prejudice peaks in middle childhood (≈5–7) before declining — ages 6–11 is
+      exactly when cross-group friendship changes trajectories.</p>
+      <span class="cite"><b>Raabe &amp; Beelmann 2011</b>, Child Development; see also Beelmann &amp; Heinemann 2014.</span></div>
+  </div>
+</section>
+
+<section id="twelve" class="tint-purple">
+  <span class="sec-kick">8 · The Twelve</span>
+  <h2 class="sec">History buddies, unlocked by building</h2>
+  <p class="lead">Twelve real figures from Black history — every claim verified against primary sources. Each buddy's
+  story unlocks when its piece is built. The kid doesn't get a lesson; the friend tells them where they came from.</p>
+  <table>
+    <tr><th>Buddy</th><th>The verified story</th></tr>
+    <tr><td>Katherine Johnson</td><td>Hand-verified the orbital math for the first American orbital flight — "If she says they're good, I'm ready to go." (NASA)</td></tr>
+    <tr><td>Garrett Morgan</td><td>Patented the three-position traffic signal (1923) — the warning behind every yellow light — and the safety hood used in the 1916 Lake Erie rescue. (USPTO/FHWA)</td></tr>
+    <tr><td>Lewis Latimer</td><td>Patented the carbon-filament process (1882) that made electric light durable; drew the telephone patent plans. (USPTO)</td></tr>
+    <tr><td>George Washington Carver</td><td>~300 uses for the peanut alone. (National Park Service — and no, he didn't invent peanut butter; we're precise.)</td></tr>
+    <tr><td>Madam C.J. Walker</td><td>Recognized by Guinness World Records as America's first self-made female millionaire.</td></tr>
+    <tr><td>Patricia Bath</td><td>Invented the Laserphaco Probe for cataract surgery (1988) — first Black woman physician to receive a U.S. medical patent. (Nat'l Inventors Hall of Fame)</td></tr>
+  </table>
+  <p class="note">+ six more, chosen by Spencer.</p>
+</section>
+
+<section id="benefits" class="tint-teal">
+  <span class="sec-kick">9 · The benefits</span>
+  <h2 class="sec">Not fluff — cited, area by area</h2>
+  <p class="lead">Every claim below maps to a verified study or official source. Full citations in §14.</p>
+  <div class="grid g4">
+    <div class="card cited"><span class="emo">🔧</span><b class="t">Building → spatial &amp; STEM skills</b>
+      <p>Randomized LEGO-construction trial (ages 7–9) improved spatial skills; block-play frequency tracks spatial skill
+      in a nationally representative sample; preschool block play predicts later math achievement.</p>
+      <span class="cite"><b>McDougal 2024</b> Dev. Science · <b>Jirout &amp; Newcombe 2015</b> Psych. Science · <b>Wolfgang 2001</b> JRCE</span></div>
+    <div class="card cited"><span class="emo">🧩</span><b class="t">Puzzle play → thinking skills</b>
+      <p>Early puzzle play predicted stronger spatial transformation skill at 4½, controlling for background.</p>
+      <span class="cite"><b>Levine et al. 2012</b>, Developmental Psychology</span></div>
+    <div class="card cited"><span class="emo">✋</span><b class="t">Hands-on beats passive</b>
+      <p>Meta-analysis: concrete manipulatives outperform abstract instruction; interactive media beats passive
+      viewing for young children (AAP).</p>
+      <span class="cite"><b>Carbonneau 2013</b> J. Ed. Psych · <b>AAP 2016</b> Media and Young Minds</span></div>
+    <div class="card cited"><span class="emo">📱</span><b class="t">AR engages and teaches</b>
+      <p>Meta-analysis of 64 studies: AR instruction outperformed non-AR on learning gains (d = .68).</p>
+      <span class="cite"><b>Garzón &amp; Acevedo 2019</b>, Educational Research Review</span></div>
+    <div class="card cited"><span class="emo">🌳</span><b class="t">Outdoors → attention &amp; mind</b>
+      <p>Park walks improved concentration (RCT); greener surroundings tracked better working memory in 2,600 kids;
+      nearby nature buffered childhood stress.</p>
+      <span class="cite"><b>Faber Taylor &amp; Kuo 2009</b> · <b>Dadvand 2015</b> PNAS · <b>Wells &amp; Evans 2003</b></span></div>
+    <div class="card cited"><span class="emo">🧠</span><b class="t">Mental health — kid</b>
+      <p>Completion confidence from building; a comfort object that reduces distress in new situations; real-world
+      wins with a companion who listens.</p>
+      <span class="cite"><b>Passman 1977/1987</b> Dev. Psych / JCCP</span></div>
+    <div class="card cited"><span class="emo">👨‍👩‍👧</span><b class="t">Mental health — parents</b>
+      <p>Shared parent-child play reduced parenting stress and improved child behavior in a randomized trial —
+      the benefit nobody in toys leads with.</p>
+      <span class="cite"><b>Weisleder et al. 2019</b>, J. Pediatrics (RCT)</span></div>
+    <div class="card cited"><span class="emo">🌏</span><b class="t">Culture &amp; empathy</b>
+      <p>Contact-based programs in grades 3–5 raised openness to diverse peers (RCT, N=983); intergroup training
+      reduces prejudice in children.</p>
+      <span class="cite"><b>Killen et al. 2024</b> · <b>Beelmann &amp; Heinemann 2014</b></span></div>
+  </div>
+  <p class="note">Discipline note: we cite only what the evidence supports. Claims we deliberately do NOT make
+  ("nature lowers cortisol," "active screens are safe," blanket LEGO-math effects) are listed in §14.</p>
+</section>
+
+<section id="line" class="tint-yellow">
+  <span class="sec-kick">10 · The line</span>
+  <h2 class="sec">Build it, wear it, hug it</h2>
+  <div class="grid g4">
+    <div class="card"><span class="emo">🧩</span><b class="t">Build kits</b><p>The monthly puzzle packs. The subscription IS the newsflash.</p></div>
+    <div class="card"><span class="emo">🧸</span><b class="t">Plushies</b><p>Every buddy gets a soft version. The wizard proved the demand at the exhibition.</p></div>
+    <div class="card"><span class="emo">👕</span><b class="t">T-shirts</b><p>Your buddy, your build, your island — on your chest.</p></div>
+    <div class="card"><span class="emo">✨</span><b class="t">Stickers &amp; chapter pieces</b><p>Trade them at school; find them in the wild.</p></div>
+  </div>
+</section>
+
+<section id="team">
+  <span class="sec-kick" style="color:var(--purple)">11 · The team</span>
+  <h2 class="sec">Vertically integrated. Already shipped.</h2>
+  <table>
+    <tr><th></th><th>Spencer Garland — BRENDA ARTS</th><th>B.M. Flores — Doctrine Labs</th></tr>
+    <tr><td>Role</td><td>The universe: characters, world, story, creative direction</td><td>End-to-end engineering: CAD, fabrication (injection molding, vacuum forming, laser cutting, 3D printing), software, conversational AI</td></tr>
+    <tr><td>Proof</td><td>$100K OCF Creative Heights awardee · PAM residencies · BlackStar · shipped console game</td><td>Vertically integrated shop + production software systems · the Studio OS that runs this pipeline</td></tr>
+    <tr><td>Together</td><td colspan="2"><b>Counter of Sheep — designed, engineered, fabricated, exhibited. The partnership is proven work.</b></td></tr>
+  </table>
+</section>
+
+<section id="market" class="tint-pink">
+  <span class="sec-kick" style="color:var(--pink)">12 · The market</span>
+  <h2 class="sec">Why the majors should care — the numbers</h2>
+  <div class="stats">
+    <div class="stat"><div class="num">$123B</div><p>Global toy market, 2025 — +8% year over year (Circana)</p></div>
+    <div class="stat"><div class="num">+14%</div><p>Building sets: the #1 growth toy category, five straight years (Circana)</p></div>
+    <div class="stat"><div class="num">$25.9B</div><p>Projected plush market by 2033, from $13.7B in 2025 (Grand View Research)</p></div>
+    <div class="stat"><div class="num">34%</div><p>Share of the toy market held by licensed character IP — our native format (Circana)</p></div>
+  </div>
+  <div class="grid g3" style="margin-top:20px">
+    <div class="card"><span class="emo">🏭</span><b class="t">The margin story</b><p>Design, tooling, fabrication, software, and AI in one team. $100K is the rent-a-capability price. We own the stack — vertically integrated.</p></div>
+    <div class="card"><span class="emo">🛡</span><b class="t">The compliance stack, pre-answered</b><p>ASTM F963-23 toy safety (mandatory under CPSIA, third-party tested) and COPPA-aware local-first data — built in from day one, not retrofitted. (CPSC / FTC)</p></div>
+    <div class="card"><span class="emo">🚀</span><b class="t">The growth engine they can't copy</b><p>A 170+ city chapter network as physical activation, a kid-posted social loop, and monthly shipping that IS the marketing calendar.</p></div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <span class="sec-kick">13 · The roadmap</span>
+  <h2 class="sec">First ninety days</h2>
+  <div class="grid g4">
+    <div class="card"><b class="t" style="font-family:Fredoka">Weeks 1–2</b><p>Dovetail prototype run from the mushroom learnings; universal joint spec drafted.</p></div>
+    <div class="card"><b class="t" style="font-family:Fredoka">Weeks 3–6</b><p>Buddy #1: Spencer designs, Flores engineers. Kit + interactive WebAR + voice demo on the local-first stack.</p></div>
+    <div class="card"><b class="t" style="font-family:Fredoka">Weeks 7–10</b><p>Portland pilot: one class builds buddies; one chapter host holds a piece; the hunt runs end to end — filmed.</p></div>
+    <div class="card"><b class="t" style="font-family:Fredoka">Weeks 11–13</b><p>Cut the pilot film. Funders' package with cited benefits. First grant application.</p></div>
+  </div>
+  <p class="note">Existing committed grants (e.g., OCF Creative Heights) stay with their obligated projects. This is new work on new money — lanes already tracked in the team's Grant Radar.</p>
+</section>
+
+<section id="citations" class="tint-purple">
+  <span class="sec-kick">14 · Citations</span>
+  <h2 class="sec">Sources &amp; the claims we refuse to make</h2>
+  <table>
+    <tr><th>Claim area</th><th>Citation</th></tr>
+    <tr><td>Construction play &amp; spatial/STEM</td><td>McDougal et al. 2024, Developmental Science 27(2):e13432 · Jirout &amp; Newcombe 2015, Psychological Science 26(3) · Wolfgang et al. 2001, J. Research in Childhood Education 15(2)</td></tr>
+    <tr><td>Puzzle play &amp; spatial skill</td><td>Levine et al. 2012, Developmental Psychology 48(2), PMC3289766</td></tr>
+    <tr><td>Manipulatives &amp; learning</td><td>Carbonneau et al. 2013, J. Educational Psychology 105(2)</td></tr>
+    <tr><td>Nature, attention &amp; stress</td><td>Faber Taylor &amp; Kuo 2009, J. Attention Disorders 12(5) · Wells 2000, Environment &amp; Behavior 32(6) · Dadvand et al. 2015, PNAS 112(24) · Wells &amp; Evans 2003, Environment &amp; Behavior 35(3)</td></tr>
+    <tr><td>Screen interactivity</td><td>Nustad &amp; Abrahamsson 2026, Frontiers in Psychology 17:1737937 · AAP Council 2016, Pediatrics 138(5)</td></tr>
+    <tr><td>AR learning gains</td><td>Garzón &amp; Acevedo 2019, Educational Research Review 27, 244–260</td></tr>
+    <tr><td>Co-play &amp; parental stress</td><td>Weisleder et al. 2019, J. Pediatrics 213 (RCT) · AAP Yogman et al. 2018, Pediatrics 142(3)</td></tr>
+    <tr><td>Intergroup contact in children</td><td>Killen et al. 2024, Peace &amp; Conflict 30(3) (RCT N=983) · Beelmann &amp; Heinemann 2014, J. Applied Dev. Psych. 35(1) · Raabe &amp; Beelmann 2011, Child Development 82(6)</td></tr>
+    <tr><td>Comfort objects</td><td>Winnicott 1953, Int. J. Psycho-Analysis 34 · Passman 1977, Developmental Psychology 13(1) · Passman 1987, J. Consulting &amp; Clinical Psychology 55(6)</td></tr>
+    <tr><td>Market data</td><td>Circana Global Toy Report 2025/2026 · Grand View Research plush &amp; STEM toy reports (vendor estimates, definitions stated)</td></tr>
+    <tr><td>Safety &amp; compliance</td><td>ASTM F963-23 via CPSC (16 C.F.R. Part 1250) · CPSIA 2008 · FTC COPPA Rule, 16 C.F.R. Part 312</td></tr>
+  </table>
+  <p class="note">Claims we do NOT make (evidence discipline): "nature lowers cortisol" (no verified pediatric RCT) ·
+  blanket "LEGO improves math" (near transfer only) · Freeman 2014 as child evidence (undergraduates) · "active screens
+  are safe" (mixed) · retracted AR meta-analyses (Yu et al.) · pen-pal-outcome claims beyond the contact literature ·
+  mentoring results transferred to AI companions.</p>
+</section>
+
+</main>
+
+<footer>
+  <span style="color:var(--yellow);font-weight:700">BRENDA ARTS × DOCTRINE LABS</span>
+  <a href="/">The artist</a>
+  <a href="world.html">World globe</a>
+  <a href="/radar/">Grant Radar</a>
+  <span class="r">Preview for Spencer · Oct 2026</span>
+</footer>
+
+<script>
+/* confetti — the hologram energy, floating */
+(function(){
+  const box = document.getElementById('confetti');
+  const colors = ['#facc15','#5b63ba','#db2777','#2563eb','#0f9d6d','#e03131'];
+  for (let i = 0; i < 46; i++){
+    const c = document.createElement('i');
+    const s = 5 + Math.random() * 9;
+    c.style.width = s + 'px'; c.style.height = s * .7 + 'px';
+    c.style.left = Math.random() * 100 + '%';
+    c.style.top = -20 - Math.random() * 60 + 'px';
+    c.style.background = colors[i % colors.length];
+    c.style.transform = 'rotate(' + Math.random() * 90 + 'deg)';
+    c.style.opacity = .35 + Math.random() * .5;
+    const dur = 7 + Math.random() * 9;
+    c.animate(
+      [{ transform: c.style.transform + ' translateY(0)' },
+       { transform: c.style.transform + ' translateY(' + (window.innerHeight + 160) + 'px)' }],
+      { duration: dur * 1000, delay: -Math.random() * dur * 1000, iterations: Infinity, easing: 'linear' }
+    );
+    box.appendChild(c);
+  }
+})();
+</script>
+
+<script type="importmap">
+{ "imports": { "three": "/vendor/three/build/three.module.js" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+const LAND = [
+  /* North America */ [[-168,66],[-140,70],[-120,72],[-95,73],[-80,72],[-62,60],[-64,46],[-70,44],[-75,38],[-81,26],[-97,26],[-105,20],[-110,23],[-117,33],[-125,40],[-125,49],[-132,57],[-152,60],[-166,60],[-168,66]],
+  /* Greenland */ [[-45,60],[-22,70],[-18,80],[-40,83],[-58,76],[-55,66],[-45,60]],
+  /* South America */ [[-77,8],[-60,10],[-50,0],[-35,-6],[-39,-14],[-48,-26],[-53,-34],[-58,-39],[-65,-41],[-71,-46],[-69,-53],[-74,-50],[-73,-40],[-71,-30],[-70,-18],[-77,-12],[-81,-5],[-77,8]],
+  /* Africa */ [[-17,15],[-8,5],[9,4],[9,-1],[12,-6],[9,-17],[15,-29],[20,-35],[27,-34],[33,-27],[35,-18],[40,-11],[41,-2],[51,11],[43,12],[37,18],[33,28],[20,32],[10,34],[-6,35],[-17,21],[-17,15]],
+  /* Madagascar */ [[44,-25],[50,-16],[49,-12],[45,-16],[44,-25]],
+  /* Europe */ [[-9,37],[-6,44],[-2,48],[5,51],[8,54],[5,58],[12,56],[18,56],[21,60],[28,60],[30,66],[24,71],[18,69],[12,65],[8,63],[5,58],[0,52],[-2,48],[-9,43],[-9,37]],
+  /* UK+IE */ [[-10,52],[-6,55],[-3,59],[0,53],[-6,51],[-10,52]],
+  /* Asia (big rough) */ [[30,66],[42,68],[60,70],[80,73],[100,76],[130,72],[150,70],[160,66],[155,58],[142,53],[135,43],[127,39],[122,30],[110,20],[105,10],[103,1],[98,8],[95,17],[88,22],[80,15],[77,8],[72,20],[68,24],[66,30],[62,25],[57,25],[48,30],[44,38],[36,36],[27,40],[26,45],[30,50],[30,66]],
+  /* Japan */ [[130,31],[135,34],[140,36],[142,40],[145,43],[141,45],[138,37],[133,34],[130,31]],
+  /* SE Asia islands */ [[95,5],[103,-1],[106,-6],[112,-8],[118,-8],[116,-3],[105,1],[95,5]],
+  /* Sumatra/Java line */ [[95,5],[105,-6],[115,-8],[130,-8],[140,-8],[135,-4],[120,-2],[105,2],[95,5]],
+  /* Australia */ [[114,-22],[114,-34],[120,-34],[129,-32],[137,-35],[141,-38],[147,-38],[150,-35],[153,-28],[153,-25],[146,-19],[142,-11],[136,-12],[131,-12],[125,-14],[122,-18],[114,-22]],
+  /* New Zealand */ [[166,-46],[172,-41],[175,-37],[173,-34],[170,-42],[166,-46]],
+  /* New Guinea */ [[131,-1],[140,-2],[147,-6],[143,-8],[135,-4],[131,-1]],
+];
+
+function makeGlobeTexture(){
+  const w = 2048, h = 1024;
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const x = c.getContext('2d');
+  const px = (lon, lat) => [ (lon + 180) / 360 * w, (90 - lat) / 180 * h ];
+
+  const g = x.createLinearGradient(0, 0, 0, h);
+  g.addColorStop(0, '#1e1e26'); g.addColorStop(.5, '#191921'); g.addColorStop(1, '#1e1e26');
+  x.fillStyle = g; x.fillRect(0, 0, w, h);
+
+  /* dotted ocean grid — the fun retro-board-game feel */
+  x.fillStyle = 'rgba(122,128,214,.16)';
+  for (let lat = -80; lat <= 80; lat += 10){
+    for (let lon = -180; lon < 180; lon += 10){
+      const [a, b] = px(lon, lat);
+      x.beginPath(); x.arc(a, b, 2.2, 0, 7); x.fill();
+    }
+  }
+
+  /* landmasses: warm paper with a soft speckle */
+  for (const poly of LAND){
+    x.beginPath();
+    poly.forEach(([lon, lat], i) => { const [a, b] = px(lon, lat); i ? x.lineTo(a, b) : x.moveTo(a, b); });
+    x.closePath();
+    x.fillStyle = '#f4ecd8'; x.fill();
+    x.strokeStyle = '#facc15'; x.lineWidth = 5; x.stroke();
+  }
+  /* sprinkle speckles on land only (clip to land) */
+  x.save();
+  for (const poly of LAND){
+    x.beginPath();
+    poly.forEach(([lon, lat], i) => { const [a, b] = px(lon, lat); i ? x.lineTo(a, b) : x.moveTo(a, b); });
+    x.closePath(); x.clip();
+  }
+  x.fillStyle = 'rgba(202,138,4,.5)';
+  for (let i = 0; i < 1400; i++){
+    const a = Math.random() * w, b = Math.random() * h;
+    x.beginPath(); x.arc(a, b, Math.random() * 2.4 + .6, 0, 7); x.fill();
+  }
+  x.restore();
+
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+const cv = document.getElementById('mini-globe');
+const renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(300, 300, false);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(36, 1, .1, 50);
+camera.position.set(0, .35, 4.6);
+scene.add(new THREE.AmbientLight(0xffffff, 1.15));
+const key = new THREE.DirectionalLight(0xfff3c7, 1.7); key.position.set(4, 3, 5); scene.add(key);
+const rim = new THREE.DirectionalLight(0x7a80d6, 1.3); rim.position.set(-5, -2, -4); scene.add(rim);
+const g = new THREE.Group(); scene.add(g);
+const R = 1.55;
+g.add(new THREE.Mesh(new THREE.SphereGeometry(R, 48, 36),
+  new THREE.MeshStandardMaterial({ map: makeGlobeTexture(), roughness: .92 })));
+g.add(new THREE.Mesh(new THREE.SphereGeometry(R * 1.05, 32, 24),
+  new THREE.MeshBasicMaterial({ color: 0x5b63ba, transparent: true, opacity: .10, side: THREE.BackSide })));
+(function(){
+  const w = .22, h = .165;
+  const sh = new THREE.Shape();
+  sh.moveTo(-w/2,-h/2); sh.lineTo(w/2,-h/2); sh.lineTo(w/2,h/2); sh.lineTo(.055,h/2);
+  sh.absarc(0,h/2,.055,0,Math.PI,false); sh.lineTo(-w/2,h/2); sh.lineTo(-w/2,-h/2); sh.closePath();
+  const head = new THREE.Mesh(new THREE.ExtrudeGeometry(sh,{depth:.05,bevelEnabled:true,bevelThickness:.012,bevelSize:.012,bevelSegments:2}),
+    new THREE.MeshStandardMaterial({ color: 0xe03131, roughness: .38 }));
+  head.rotation.x = -Math.PI/2; head.position.y = .17; head.scale.setScalar(1.3);
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(.015,.015,.15,8),
+    new THREE.MeshStandardMaterial({ color: 0x232326 }));
+  stem.position.y = .075;
+  const pin = new THREE.Group(); pin.add(stem, head);
+  const lat = 45.52 * Math.PI/180, lon = -122.68 * Math.PI/180;
+  const v = new THREE.Vector3(R*Math.cos(lat)*Math.cos(lon), R*Math.sin(lat), -R*Math.cos(lat)*Math.sin(lon));
+  pin.position.copy(v); pin.lookAt(v.clone().multiplyScalar(2)); pin.rotateX(Math.PI/2);
+  g.add(pin);
+})();
+const sparkGeo = new THREE.OctahedronGeometry(.05);
+const sparkMats = [0x9aa0ff,0xfacc15,0xdb2777].map(c=>new THREE.MeshBasicMaterial({color:c}));
+for (let i=0;i<24;i++){
+  const m = new THREE.Mesh(sparkGeo, sparkMats[i%3]);
+  const a = Math.random()*Math.PI*2, b = Math.acos(Math.random()*2-1), r = R*(1.15+Math.random()*.25);
+  m.position.set(r*Math.sin(b)*Math.cos(a), r*Math.cos(b), r*Math.sin(b)*Math.sin(a));
+  m.userData.spin = .4+Math.random(); g.add(m);
+}
+const clock = new THREE.Clock();
+(function tick(){
+  requestAnimationFrame(tick);
+  const t = clock.getElapsedTime();
+  g.rotation.y = t * .28;
+  g.children.forEach(m => { if (m.userData.spin) { m.rotation.x = t*m.userData.spin; m.rotation.y = t*m.userData.spin*.7; } });
+  renderer.render(scene, camera);
+})();
+const logo = document.getElementById('globe-logo');
+const go = () => location.href = 'world.html';
+logo.addEventListener('click', go);
+logo.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+</script>
+</body>
+</html>
