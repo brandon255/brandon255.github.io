@@ -42,9 +42,9 @@
 
   header.world-head{padding:calc(70px + clamp(30px,6vw,70px)) var(--pad) 10px;position:relative;overflow:hidden}
   .eyebrow{font-size:12px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--yellow)}
-  h1{font-weight:700;text-transform:uppercase;font-size:clamp(34px,6.5vw,84px);line-height:1.02;letter-spacing:.01em;margin-top:14px}
+  h1{font-weight:700;text-transform:uppercase;font-size:clamp(28px,5vw,62px);line-height:1.02;letter-spacing:.01em;margin-top:14px}
   h1 .swirl{color:var(--purple)}
-  .head-sub{max-width:62ch;margin-top:18px;font-size:15px;color:rgba(255,255,255,.72)}
+  .head-sub{max-width:70ch;margin-top:14px;font-size:13px;color:rgba(255,255,255,.72)}
   .head-sub b{color:var(--yellow);font-weight:500}
   .sticker{display:inline-block;background:var(--yellow);color:var(--ink);font-weight:700;font-size:12px;
            letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:6px;
@@ -69,7 +69,7 @@
   #city-card.open{display:block;animation:pop .28s cubic-bezier(.2,1.4,.4,1)}
   @keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
   #city-card .cc-kicker{font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
-  #city-card h2{font-size:26px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin:6px 0 2px}
+  #city-card h2{font-size:22px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin:6px 0 2px}
   #city-card .cc-country{font-size:12px;color:var(--ink2);letter-spacing:.14em;text-transform:uppercase}
   #city-card .cc-lang{margin-top:12px;font-size:12px;color:var(--ink2)}
   #city-card .cc-lang b{color:var(--ink);font-weight:500}
@@ -89,10 +89,10 @@
   }
 
   /* ---------- sections ---------- */
-  section{padding:clamp(44px,6vw,84px) var(--pad);border-top:1px solid rgba(255,255,255,.14)}
+  section{padding:clamp(34px,5vw,60px) var(--pad);border-top:1px solid rgba(255,255,255,.14)}
   .kicker{font-size:12px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--yellow);margin-bottom:12px}
-  h2.sec{font-size:clamp(24px,3.6vw,44px);font-weight:700;text-transform:uppercase;line-height:1.06;letter-spacing:.01em}
-  .sec-sub{max-width:60ch;margin-top:12px;color:rgba(255,255,255,.72);font-size:15px}
+  h2.sec{font-size:clamp(20px,3vw,34px);font-weight:700;text-transform:uppercase;line-height:1.06;letter-spacing:.01em}
+  .sec-sub{max-width:66ch;margin-top:10px;color:rgba(255,255,255,.72);font-size:13px}
 
   /* the loop */
   .loop{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
@@ -102,8 +102,8 @@
   .loop .step:nth-child(2) .n{background:var(--purple);color:#fff}
   .loop .step:nth-child(3) .n{background:var(--teal);color:#fff}
   .loop .step:nth-child(4) .n{background:var(--pink);color:#fff}
-  .loop b{display:block;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
-  .loop p{font-size:13px;color:rgba(255,255,255,.68)}
+  .loop b{display:block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+  .loop p{font-size:12px;color:rgba(255,255,255,.68)}
   @media (max-width:840px){ .loop{grid-template-columns:1fr 1fr} }
   @media (max-width:540px){ .loop{grid-template-columns:1fr} }
 
@@ -111,13 +111,13 @@
   .phones{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,3vw,40px);margin-top:36px;align-items:end}
   .phone{background:#0d0d11;border:1px solid #2c2c34;border-radius:30px;padding:14px 12px 18px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
   .phone .notch{width:70px;height:6px;border-radius:3px;background:#2c2c34;margin:0 auto 12px}
-  .screen{background:var(--panel);border-radius:18px;overflow:hidden;color:var(--ink);min-height:420px;display:flex;flex-direction:column}
+  .screen{background:var(--panel);border-radius:18px;overflow:hidden;color:var(--ink);min-height:390px;display:flex;flex-direction:column}
   .screen .sbar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--yellow-soft);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
   .screen .body{padding:14px;flex:1;display:flex;flex-direction:column;gap:12px}
   .post{background:var(--panel2);border-radius:14px;padding:12px}
   .post .who{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--purple)}
   .post .where{font-size:10px;color:var(--paper);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
-  .post .what{font-size:12.5px;margin-top:8px;line-height:1.5}
+  .post .what{font-size:12px;margin-top:8px;line-height:1.5}
   .post .flag{display:inline-block;background:var(--yellow);color:var(--ink);font-size:9px;font-weight:700;padding:2px 8px;border-radius:999px;margin-top:8px;letter-spacing:.1em;text-transform:uppercase}
   .phone .cap{text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:14px}
   .phone.center{transform:translateY(-14px)}
@@ -137,7 +137,7 @@
   .pen-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(20px,4vw,50px);margin-top:30px;align-items:start}
   .feature{background:var(--bg2);border:1px solid #2c2c34;border-radius:16px;padding:20px}
   .feature b{display:block;font-size:14px;font-weight:700;text-transform:uppercase;margin-bottom:8px;letter-spacing:.06em}
-  .feature p{font-size:13.5px;color:rgba(255,255,255,.7)}
+  .feature p{font-size:12.5px;color:rgba(255,255,255,.7)}
   .feature .emo{font-size:22px;margin-bottom:10px}
   @media (max-width:840px){ .pen-grid{grid-template-columns:1fr} }
   .buddy-big{background:var(--panel);color:var(--ink);border-radius:20px;padding:26px;text-align:center}
@@ -147,6 +147,49 @@
   .buddy-big .face i{width:14px;height:14px;background:#fff;border-radius:50%;box-shadow:26px 0 0 #fff;margin-right:13px}
   .buddy-big h3{font-size:20px;font-weight:700;text-transform:uppercase}
   .buddy-big p{font-size:13.5px;color:var(--ink2);margin-top:8px}
+
+
+  /* characters + benefits + merch */
+  .chars{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:26px}
+  .char{background:var(--bg2);border:1px solid #2c2c34;border-radius:16px;padding:16px 12px;text-align:center}
+  .char .blob{width:54px;height:54px;border-radius:14px;margin:0 auto 10px;position:relative}
+  .char .blob i{position:absolute;top:32%;width:9px;height:11px;border-radius:50%;background:#fff}
+  .char .blob i.l{left:26%}.char .blob i.r{right:26%}
+  .char .blob.hat::after{content:"";position:absolute;left:50%;top:-12px;transform:translateX(-50%);width:0;height:0;
+    border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:14px solid var(--yellow)}
+  .char b{display:block;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .char span{display:block;font-size:10.5px;color:rgba(255,255,255,.55);margin-top:4px;line-height:1.45}
+  @media (max-width:840px){ .chars{grid-template-columns:1fr 1fr} .char:last-child{grid-column:1/-1} }
+
+  .drag-demo{margin-top:24px;background:var(--bg2);border:1px solid #2c2c34;border-radius:16px;padding:22px;
+             display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+  .drag-stage{position:relative;height:150px;background:#101014;border-radius:12px;overflow:hidden}
+  .drag-path{position:absolute;inset:0}
+  .mover{position:absolute;left:12%;top:38%;width:44px;height:44px;border-radius:12px;
+    background:radial-gradient(circle at 34% 30%, #7a80d6, var(--purple));animation:follow 5s ease-in-out infinite}
+  .mover::after{content:"";position:absolute;top:30%;left:24%;width:8px;height:10px;border-radius:50%;background:#fff;
+    box-shadow:22px 0 0 #fff}
+  .finger{position:absolute;width:22px;height:22px;border-radius:50%;border:3px solid var(--yellow);
+    animation:follow 5s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(250,204,21,.6))}
+  @keyframes follow{0%,100%{transform:translate(0,0)}25%{transform:translate(110px,-38px)}50%{transform:translate(190px,28px)}75%{transform:translate(70px,44px)}}
+  .drag-copy b{display:block;font-size:13px;font-weight:700;text-transform:uppercase;margin-bottom:6px}
+  .drag-copy p{font-size:12.5px;color:rgba(255,255,255,.7)}
+  @media (max-width:840px){ .drag-demo{grid-template-columns:1fr} }
+
+  .merch{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+  .m-item{background:var(--bg2);border:1px solid #2c2c34;border-radius:16px;padding:18px 14px;text-align:center}
+  .m-item .emo{font-size:26px}
+  .m-item b{display:block;font-size:12px;font-weight:700;text-transform:uppercase;margin-top:8px}
+  .m-item span{display:block;font-size:10.5px;color:rgba(255,255,255,.55);margin-top:4px}
+  @media (max-width:840px){ .merch{grid-template-columns:1fr 1fr} }
+
+  .bens{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+  .ben{background:var(--bg2);border:1px solid #2c2c34;border-radius:16px;padding:16px 14px}
+  .ben .emo{font-size:20px}
+  .ben b{display:block;font-size:11.5px;font-weight:700;text-transform:uppercase;margin-top:8px;letter-spacing:.05em}
+  .ben p{font-size:11px;color:rgba(255,255,255,.62);margin-top:5px;line-height:1.5}
+  @media (max-width:840px){ .bens{grid-template-columns:1fr 1fr} }
+  @media (max-width:540px){ .bens{grid-template-columns:1fr} }
 
   footer{padding:40px var(--pad) 30px;border-top:1px solid rgba(255,255,255,.14);
          display:flex;flex-wrap:wrap;gap:12px 30px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)}
@@ -290,6 +333,59 @@
       Knows where every missing piece of your island is hiding.</p>
       <p style="margin-top:10px;color:var(--purple);font-weight:500">"Wanna go find one?"</p>
     </div>
+  </div>
+</section>
+
+<section aria-label="The characters">
+  <div class="kicker">The cast</div>
+  <h2 class="sec">Characters that already exist</h2>
+  <p class="sec-sub">The island's AR layer already carries a library of Spencer's creatures — including the big
+  blocky one kids meet at the table. Every buddy in the game is a Spencer Garland original; kids edit the remixes.</p>
+  <div class="chars">
+    <div class="char"><div class="blob" style="background:#232326"><i class="l"></i><i class="r"></i></div><b>Blocky</b><span>The big black blocky dude from the AR table. First friend.</span></div>
+    <div class="char"><div class="blob hat" style="background:var(--purple)"><i class="l"></i><i class="r"></i></div><b>Wizard</b><span>Canon since the exhibition plush. Keeper of pieces.</span></div>
+    <div class="char"><div class="blob" style="background:var(--teal)"><i class="l"></i><i class="r"></i></div><b>Drummer</b><span>Keeps the beat when you tap his foot. From Lagos.</span></div>
+    <div class="char"><div class="blob" style="background:var(--pink)"><i class="l"></i><i class="r"></i></div><b>Abra</b><span>The architect. Rebuilds the burned world, piece by piece.</span></div>
+    <div class="char"><div class="blob" style="background:var(--gold)"><i class="l"></i><i class="r"></i></div><b>+ You</b><span>Every character Spencer designs next. The library grows with the world.</span></div>
+  </div>
+  <div class="drag-demo">
+    <div class="drag-stage">
+      <div class="mover"></div>
+      <div class="finger" style="left:6%;top:52%"></div>
+    </div>
+    <div class="drag-copy">
+      <b>They move. You move them.</b>
+      <p>Nothing in this world is static. Drag a buddy with a finger and it follows — walks where you point,
+      dances when you hold, sits when you stop. The first build milestone of the app: every character alive
+      to the touch, on every phone and iPad, no download needed.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Plush and merch">
+  <div class="kicker">The line</div>
+  <h2 class="sec">Build it, wear it, hug it</h2>
+  <p class="sec-sub">The dovetail kit grows into a full line — same universal joint, same characters, every scale.</p>
+  <div class="merch">
+    <div class="m-item"><div class="emo">🧸</div><b>Plushies</b><span>The wizard proved it. Every buddy gets a soft version.</span></div>
+    <div class="m-item"><div class="emo">👕</div><b>T-shirts</b><span>Your buddy, your build, your island — on your chest.</span></div>
+    <div class="m-item"><div class="emo">🧩</div><b>Chapter pieces</b><span>City-edition dovetail tiles, only findable in the wild.</span></div>
+    <div class="m-item"><div class="emo">✨</div><b>Sticker packs</b><span>The Twelve, the cast, the pins. Trade them at school.</span></div>
+  </div>
+</section>
+
+<section aria-label="All the benefits">
+  <div class="kicker">The good it does</div>
+  <h2 class="sec">Everything a kid (and their grown-up) gets</h2>
+  <div class="bens">
+    <div class="ben"><span class="emo">🌏</span><b>New cultures</b><p>Pen pals, languages, and foods of 60+ chapter countries — through friends, not worksheets.</p></div>
+    <div class="ben"><span class="emo">🎨</span><b>Art</b><p>Inside real studios and workshops on the hunt — a first hello to the creative world.</p></div>
+    <div class="ben"><span class="emo">🔧</span><b>Skills</b><p>Assembly logic, joinery, 3D thinking — engineering taught by a toy that clicks.</p></div>
+    <div class="ben"><span class="emo">📜</span><b>Their history</b><p>The Twelve: real inventors and pioneers, unlocked by building their piece.</p></div>
+    <div class="ben"><span class="emo">💛</span><b>Confidence</b><p>"I built this" — completion, ownership, and the thunk you earn.</p></div>
+    <div class="ben"><span class="emo">🧠</span><b>Mental health</b><p>A reason to go out, a companion that listens, wins that are real.</p></div>
+    <div class="ben"><span class="emo">👨‍👩‍👧</span><b>For the parents</b><p>A shared mission, a monthly ritual, and a window into their kid's world.</p></div>
+    <div class="ben"><span class="emo">🏃</span><b>Bodies, not screens</b><p>The app points outside — walks, buses, workshops. The phone is the door, not the room.</p></div>
   </div>
 </section>
 
@@ -442,21 +538,34 @@ for (let i = 0; i < 90; i++){
 /* pins: red pushpin with a white belly dot + invisible fat hit target */
 const pins = [];
 const pinGroup = new THREE.Group(); world.add(pinGroup);
+
+/* puzzle-piece top: a tile with a jigsaw tab, like the island's map pieces */
+function puzzleGeometry(){
+  const w = .20, h = .15;
+  const sh = new THREE.Shape();
+  sh.moveTo(-w/2, -h/2);
+  sh.lineTo(w/2, -h/2);
+  sh.lineTo(w/2, h/2);
+  sh.lineTo(.05, h/2);
+  sh.absarc(0, h/2, .05, 0, Math.PI, false);
+  sh.lineTo(-w/2, h/2);
+  sh.lineTo(-w/2, -h/2);
+  sh.closePath();
+  return new THREE.ExtrudeGeometry(sh, { depth: .045, bevelEnabled: true,
+    bevelThickness: .012, bevelSize: .012, bevelSegments: 2 });
+}
 function addPin(city){
   const g = new THREE.Group();
   const stem = new THREE.Mesh(new THREE.CylinderGeometry(.014, .014, .13, 8),
     new THREE.MeshStandardMaterial({ color: 0x232326, roughness: .5 }));
   stem.position.y = .065;
-  const head = new THREE.Mesh(new THREE.SphereGeometry(.075, 20, 16),
-    new THREE.MeshStandardMaterial({ color: 0xe03131, roughness: .35 }));
-  head.position.y = .15;
-  const dot = new THREE.Mesh(new THREE.SphereGeometry(.026, 12, 10),
-    new THREE.MeshBasicMaterial({ color: 0xffffff }));
-  dot.position.set(0, .17, .05);
+  const head = new THREE.Mesh(puzzleGeometry(),
+    new THREE.MeshStandardMaterial({ color: 0xe03131, roughness: .38 }));
+  head.position.y = .155; head.rotation.x = -Math.PI / 2; head.scale.setScalar(1.25);
   const hit = new THREE.Mesh(new THREE.SphereGeometry(.22, 8, 8),
     new THREE.MeshBasicMaterial({ visible: false }));
   hit.position.y = .12;
-  g.add(stem, head, dot, hit);
+  g.add(stem, head, hit);
 
   const lat = city.lat * Math.PI / 180, lon = city.lon * Math.PI / 180;
   const v = new THREE.Vector3(
